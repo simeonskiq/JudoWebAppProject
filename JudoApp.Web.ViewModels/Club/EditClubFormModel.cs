@@ -1,14 +1,17 @@
 ﻿namespace JudoApp.Web.ViewModels.Club
 {
+    using AutoMapper;
     using System.ComponentModel.DataAnnotations;
 
-    using Data.Models;
     using Services.Mapping;
+    using Data.Models;
 
     using static Common.EntityValidationConstants.Club;
-
-    public class AddClubFormModel : IMapTo<Club>
+    public class EditClubFormModel : IHaveCustomMappings
     {
+        [Required]
+        public string Id { get; set; } = null!;
+
         [Required]
         [MinLength(NameMinLength)]
         [MaxLength(NameMaxLength)]
@@ -39,7 +42,16 @@
 
         [MinLength(ImageUrlMinLength)]
         [MaxLength(ImageUrlMaxLength)]
-
         public string? ImageUrl { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration
+                .CreateMap<Club, EditClubFormModel>();
+
+            configuration
+                .CreateMap<EditClubFormModel, Club>()
+                .ForMember(d => d.Id, x => x.MapFrom(s => Guid.Parse(s.Id)));
+        }
     }
 }
