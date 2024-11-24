@@ -1,5 +1,6 @@
 ﻿namespace JudoApp.Web.Data
 {
+    using JudoApp.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
@@ -16,7 +17,9 @@
 
         }
 
-        private virtual DbSet<Club>
+        public virtual DbSet<Club> Clubs { get; set; } = null!;
+
+        public virtual DbSet<Judge> Judges { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

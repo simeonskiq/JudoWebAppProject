@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Judge\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\JudoApp.Common\JudoApp.Common.csproj" />
     <ProjectReference Include="..\JudoApp.Data.Models\JudoApp.Data.Models.csproj" />
     <ProjectReference Include="..\JudoApp.Services.Mapping\JudoApp.Services.Mapping.csproj" />
