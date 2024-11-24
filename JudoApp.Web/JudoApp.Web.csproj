@@ -15,4 +15,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JudoApp.Common\JudoApp.Common.csproj" />
+    <ProjectReference Include="..\JudoApp.Data\JudoApp.Data.csproj" />
+    <ProjectReference Include="..\JudoApp.Services.Data\JudoApp.Services.Data.csproj" />
+    <ProjectReference Include="..\JudoApp.Services.Mapping\JudoApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\JudoApp.Web.Infrastructure\JudoApp.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\JudoApp.Web.ViewModels\JudoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
