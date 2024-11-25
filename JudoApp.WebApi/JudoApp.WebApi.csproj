@@ -14,4 +14,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JudoApp.Services.Data\JudoApp.Services.Data.csproj" />
+    <ProjectReference Include="..\JudoApp.Web.Infrastructure\JudoApp.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\JudoApp.Web.ViewModels\JudoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
