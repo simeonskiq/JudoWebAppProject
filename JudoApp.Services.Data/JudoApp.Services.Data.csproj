@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JudoApp.Common\JudoApp.Common.csproj" />
+    <ProjectReference Include="..\JudoApp.Data\JudoApp.Data.csproj" />
+    <ProjectReference Include="..\JudoApp.Web.ViewModels\JudoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
