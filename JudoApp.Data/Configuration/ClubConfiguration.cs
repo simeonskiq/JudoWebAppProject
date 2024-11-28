@@ -49,7 +49,7 @@
                 .IsRequired()
                 .HasDefaultValue(false);
 
-            builder.HasData(this.GenerateClubs);
+            builder.HasData(this.GenerateClubs());
         }
 
         private IEnumerable<Club> GenerateClubs()

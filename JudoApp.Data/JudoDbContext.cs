@@ -1,10 +1,11 @@
 ﻿namespace JudoApp.Web.Data
 {
     using JudoApp.Data.Models;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
-    public class JudoDbContext : IdentityDbContext
+    public class JudoDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public JudoDbContext()
         {
