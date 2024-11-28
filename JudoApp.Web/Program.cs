@@ -25,6 +25,7 @@ namespace JudoApp.Web
                     options.UseSqlServer(connectionString);
                 });
 
+
             builder.Services
                 .AddIdentity<ApplicationUser, IdentityRole<Guid>>(cfg =>
                 {
