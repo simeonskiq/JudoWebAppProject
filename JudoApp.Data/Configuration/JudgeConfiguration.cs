@@ -21,6 +21,7 @@
 
             builder
                 .Property(j => j.Description)
+                .IsRequired(false)
                 .HasMaxLength(DescriptionMaxLenght);
 
             builder

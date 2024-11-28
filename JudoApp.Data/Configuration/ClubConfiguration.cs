@@ -32,10 +32,12 @@
 
             builder
                 .Property(c => c.PhoneNumber)
+                .IsRequired(false)
                 .HasMaxLength(PhoneMaxLenght);
 
             builder
                 .Property(c => c.Email)
+                .IsRequired(false)
                 .HasMaxLength(EmailMaxLenght);
 
             builder
