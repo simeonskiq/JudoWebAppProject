@@ -1,8 +1,13 @@
 {
   "dependencies": {
+    "mssql2": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DESKTOP-FEFVBSR:SQLEXPRESS"
+    },
     "mssql1": {
-      "secretStore": "LocalSecretsFile",
-      "type": "mssql.local",
+      "ignored": "True",
+      "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultConnection1",
       "dynamicId": null
     }

@@ -59,8 +59,8 @@ namespace JudoApp.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    City = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(50)", maxLength: 15, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 15, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(85)", maxLength: 85, nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(2083)", maxLength: 2083, nullable: true, defaultValue: "/image/NoImageAvailable.jpg"),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
@@ -196,8 +196,8 @@ namespace JudoApp.Data.Migrations
                 columns: new[] { "Id", "Address", "City", "Email", "Name", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { new Guid("1a514448-c64a-44aa-af49-8098460d4876"), "Zala. „Dunav“, ul. „Chiprovci“ 40", "Ruse", null, "Loko Ruse", "+359 8 7662 3232" },
-                    { new Guid("77f6c006-951e-4855-9d7e-43a43086a690"), "bul. „Prof. Cvetan Lazarov“ №14", "Sofia", null, "SK CSKA Sofia", "0898 702 088" }
+                    { new Guid("0a5a7bf0-d488-4916-9124-66968a9a103a"), "Zala. „Dunav“, ul. „Chiprovci“ 40", "Ruse", null, "Loko Ruse", "+359 8 7662 3232" },
+                    { new Guid("9b39a84a-1177-449e-b2b1-401bc165aa55"), "bul. „Prof. Cvetan Lazarov“ №14", "Sofia", null, "SK CSKA Sofia", "0898 702 088" }
                 });
 
             migrationBuilder.InsertData(
@@ -205,8 +205,8 @@ namespace JudoApp.Data.Migrations
                 columns: new[] { "Id", "Description", "IsDeleted", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("131cbbb0-1676-456e-b1ba-b361c62026e2"), "Pritejava licenz 'A' koito mu dava pravo da sudiistva na svetovni purvenstva", false, "Plamen Velikov" },
-                    { new Guid("92db2e33-18ea-4d00-a95a-5ff1baf28634"), "Pritejava licenz 'B' s pravo da sudiistva na kontinentalni purvenstva.", false, "Rumen Minchev" }
+                    { new Guid("c822330e-716f-4be5-bc20-8de4031b3817"), "Pritejava licenz 'A' koito mu dava pravo da sudiistva na svetovni purvenstva", false, "Plamen Velikov" },
+                    { new Guid("d1d1c401-9bff-4f32-a9af-b55a5eebef77"), "Pritejava licenz 'B' s pravo da sudiistva na kontinentalni purvenstva.", false, "Rumen Minchev" }
                 });
 
             migrationBuilder.CreateIndex(

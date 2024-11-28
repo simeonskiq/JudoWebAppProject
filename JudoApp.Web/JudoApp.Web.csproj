@@ -25,4 +25,8 @@
     <ProjectReference Include="..\JudoApp.Web.ViewModels\JudoApp.Web.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\" />
+  </ItemGroup>
+
 </Project>

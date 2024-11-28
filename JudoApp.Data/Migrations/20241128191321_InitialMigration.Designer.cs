@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JudoApp.Data.Migrations
 {
     [DbContext(typeof(JudoDbContext))]
-    [Migration("20241128165438_InitialMigration")]
+    [Migration("20241128191321_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -138,7 +138,7 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1a514448-c64a-44aa-af49-8098460d4876"),
+                            Id = new Guid("0a5a7bf0-d488-4916-9124-66968a9a103a"),
                             Address = "Zala. „Dunav“, ul. „Chiprovci“ 40",
                             City = "Ruse",
                             IsDeleted = false,
@@ -147,7 +147,7 @@ namespace JudoApp.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("77f6c006-951e-4855-9d7e-43a43086a690"),
+                            Id = new Guid("9b39a84a-1177-449e-b2b1-401bc165aa55"),
                             Address = "bul. „Prof. Cvetan Lazarov“ №14",
                             City = "Sofia",
                             IsDeleted = false,
@@ -187,14 +187,14 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("131cbbb0-1676-456e-b1ba-b361c62026e2"),
+                            Id = new Guid("c822330e-716f-4be5-bc20-8de4031b3817"),
                             Description = "Pritejava licenz 'A' koito mu dava pravo da sudiistva na svetovni purvenstva",
                             IsDeleted = false,
                             Name = "Plamen Velikov"
                         },
                         new
                         {
-                            Id = new Guid("92db2e33-18ea-4d00-a95a-5ff1baf28634"),
+                            Id = new Guid("d1d1c401-9bff-4f32-a9af-b55a5eebef77"),
                             Description = "Pritejava licenz 'B' s pravo da sudiistva na kontinentalni purvenstva.",
                             IsDeleted = false,
                             Name = "Rumen Minchev"

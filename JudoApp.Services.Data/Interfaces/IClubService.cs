@@ -3,7 +3,7 @@
     using Web.ViewModels.Club;
     public interface IClubService
     {
-        Task<IEnumerable<ClubIndexViewModel>> IndexGetAllOrderedByLocationAsync();
+        Task<IEnumerable<ClubIndexViewModel>> IndexGetAllOrderedByNameAsync();
 
         Task AddClubAsync(AddClubFormModel model);
 

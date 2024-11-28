@@ -2,7 +2,7 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql",
-      "connectionId": "Server=DESKTOP-FEFVBSR\\SQLEXPRESS;Database=JudoApp2024;Trusted_Connection=True;",
+      "connectionId": "ConnectionStrings:DESKTOP-FEFVBSR:SQLEXPRESS",
       "dynamicId": null
     }
   }

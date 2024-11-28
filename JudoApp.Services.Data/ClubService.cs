@@ -16,12 +16,12 @@
             this.clubRepository = clubRepository;
         }
 
-        public async Task<IEnumerable<ClubIndexViewModel>> IndexGetAllOrderedByLocationAsync()
+        public async Task<IEnumerable<ClubIndexViewModel>> IndexGetAllOrderedByNameAsync()
         {
             IEnumerable<ClubIndexViewModel> clubs = await this.clubRepository
                 .GetAllAttached()
                 .Where(c => c.IsDeleted == false)
-                .OrderBy(c => c.Address)
+                .OrderBy(c => c.Name)
                 .To<ClubIndexViewModel>()
                 .ToArrayAsync();
 
