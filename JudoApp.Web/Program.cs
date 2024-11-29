@@ -17,6 +17,9 @@ namespace JudoApp.Web
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
             string connectionString = builder.Configuration.GetConnectionString("SQLServer")!;
+            string adminEmail = builder.Configuration.GetValue<string>("Administrator:Email")!;
+            string adminUsername = builder.Configuration.GetValue<string>("Administrator:Username")!;
+            string adminPassword = builder.Configuration.GetValue<string>("Administrator:Password")!;
 
             // Add services to the container.
             builder.Services
@@ -72,6 +75,8 @@ namespace JudoApp.Web
             app.UseAuthorization();
 
             app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
+
+            app.SeedAdministrator(adminEmail, adminUsername, adminPassword);
 
             app.MapControllerRoute(
                 name: "Areas",

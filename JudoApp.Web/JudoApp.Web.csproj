@@ -33,4 +33,9 @@
     <ProjectReference Include="..\JudoApp.Web.ViewModels\JudoApp.Web.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Judge\" />
+    <Folder Include="Views\Article\" />
+  </ItemGroup>
+
 </Project>
