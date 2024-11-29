@@ -27,5 +27,15 @@
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
         }
+
+        public static class Article
+        {
+            public const int TittleMinLenght = 20;
+            public const int TittleMaxLenght = 50;
+            public const int DescriptionMinLenght = 100;
+            public const int DescriptionMaxLenght = 3000;
+            public const int ImageUrlMinLength = 8;
+            public const int ImageUrlMaxLength = 2083;
+        }
     }
 }

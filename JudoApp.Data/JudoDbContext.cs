@@ -22,6 +22,8 @@
 
         public virtual DbSet<Judge> Judges { get; set; } = null!;
 
+        public virtual DbSet<Article> Articles { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
