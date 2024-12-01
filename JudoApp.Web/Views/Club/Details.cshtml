@@ -1,5 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using JudoApp.Web.ViewModels.Club;
+@using JudoApp.Services.Data.Interfaces
+@using JudoApp.Web.Infrastructure.Extensions
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ClubDetailsViewModel
+
+@inject IManagerService managerService
+
 @{
+    ViewData["Title"] = "Club Details";
 }
+
+<img src="~/images/LokoRuse_logo.jpg" class="card-img-top" alt="Club Image" style="height: 200px; object-fit: cover;">
+<h2 class="my-4 text-center display-4">@Model.Name</h2>
+<p class="text-center lead"><strong>Address:</strong> @Model.Address</p>
+<p class="text-center lead"><strong>City:</strong> @Model.City</p>
+<p class="text-center lead"><strong>PhoneNumber:</strong> @Model.PhoneNumber</p>
+<p class="text-center lead"><strong>Email:</strong> @Model.Email</p>
+
+<div class="text-center mt-5">
+        <a asp-action="Index" class="btn btn-secondary btn-lg px-4">
+            <i class="bi bi-arrow-left-circle"></i> Back to Clubs
+        </a>
+</div>

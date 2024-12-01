@@ -39,11 +39,23 @@
         public async Task<ClubDetailsViewModel?> GetClubDetailsByIdAsync(Guid id)
         {
             Club? club = await this.clubRepository
-                .GetAllAttached()
-                .Where(c => c.IsDeleted == false)
-                .FirstOrDefaultAsync(c => c.Id == id);
+              .GetAllAttached()
+              .Where(c => c.IsDeleted == false)
+              .FirstOrDefaultAsync(c => c.Id == id);
 
-            ClubDetailsViewModel? viewModel = null;       
+            ClubDetailsViewModel? viewModel = null;
+            if (club != null)
+            {
+                viewModel = new ClubDetailsViewModel()
+                {
+                    Id = club.Id.ToString(),
+                    Name = club.Name,
+                    Address = club.Address,
+                    City = club.City,
+                    PhoneNumber = club.PhoneNumber,
+                    Email = club.Email,
+                };
+            }
 
             return viewModel;
         }
