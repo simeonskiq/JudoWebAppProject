@@ -19,10 +19,10 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<ClubIndexViewModel> club =
+            IEnumerable<ClubIndexViewModel> clubs =
                 await this.clubService.IndexGetAllOrderedByNameAsync();
 
-            return this.View(club);
+            return this.View(clubs);
         }
 
         [HttpGet]

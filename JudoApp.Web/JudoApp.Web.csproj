@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Views\Judge\" />
     <Folder Include="Views\Article\" />
   </ItemGroup>

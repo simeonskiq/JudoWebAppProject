@@ -7,9 +7,9 @@ namespace JudoApp.Web
     using JudoApp.Services.Mapping;
     using JudoApp.Web.Data;
     using JudoApp.Web.Infrastructure.Extensions;
-    using JudoApp.Web.Models;
     using JudoApp.Data.Models;
     using JudoApp.Services.Data.Interfaces;
+    using JudoApp.Web.ViewModels;
 
     public class Program
     {
