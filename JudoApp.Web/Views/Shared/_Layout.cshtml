@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/NavBar.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JudoApp.Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="icon" href="~/favicon.svg" type="image/svg">
 </head>
 <body>
     <header>
@@ -17,7 +18,9 @@
                 <span class="fas fa-bars"></span>
             </div>
             <div class="logo">
-                CodingNepal
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/Images/Index_Logo.png" alt="Club Image">
+                </a>
             </div>
             <div class="nav-items">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
@@ -26,16 +29,7 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Feedback</a></li>
             </div>
-            <div class="search-icon">
-                <span class="fas fa-search"></span>
-            </div>
-            <div class="cancel-icon">
-                <span class="fas fa-times"></span>
-            </div>
-            <form action="#">
-                <input type="search" class="search-data" placeholder="Search" required>
-                <button type="submit" class="fas fa-search"></button>
-            </form>
+            <partial name="_LoginPartial" />
         </nav>
     </header>
     <div class="container">
