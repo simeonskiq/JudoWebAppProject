@@ -37,5 +37,13 @@
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
         }
+
+        public static class Manager
+        {
+            public const int PhoneNumberMinLength = 4;
+            public const int PhoneNumberMaxLength = 15;
+            public const int ReasonMinLenght = 25;
+            public const int ReasonMaxLenght = 100;
+        }
     }
 }
