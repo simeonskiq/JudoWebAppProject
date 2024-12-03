@@ -2,9 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace CinemaApp.Web.Areas.Identity.Pages.Account
+namespace JudoApp.Web.Areas.Identity.Pages.Account
 {
     using System.ComponentModel.DataAnnotations;
 
