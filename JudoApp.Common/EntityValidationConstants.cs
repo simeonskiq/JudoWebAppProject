@@ -45,5 +45,11 @@
             public const int ReasonMinLenght = 25;
             public const int ReasonMaxLenght = 100;
         }
+
+        public static class ManagerRequest
+        {
+            public const int ReasonMinLength = 30;
+            public const int ReasonMaxLength = 300;
+        }
     }
 }

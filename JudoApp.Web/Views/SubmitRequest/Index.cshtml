@@ -1,0 +1,8 @@
+﻿@using JudoApp.Web.ViewModels.Admin.UserManagement
+@model ManagerRequestViewModel
+
+<form asp-action="SubmitRequest" method="post">
+    <label for="Reason">Reason for Request:</label>
+    <textarea id="Reason" name="Reason" required></textarea>
+    <button type="submit">Submit</button>
+</form>

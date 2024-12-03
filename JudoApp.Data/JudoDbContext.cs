@@ -26,6 +26,8 @@
 
         public virtual DbSet<Manager> Managers { get; set; } = null!;
 
+        public virtual DbSet<ManagerRequest> ManagerRequests { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
