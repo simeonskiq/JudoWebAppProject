@@ -1,9 +1,8 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-
-using JudoApp.Data.Models;
-namespace JudoApp.Services.Data
+﻿namespace JudoApp.Services.Data
 {
+
+    using Microsoft.EntityFrameworkCore;
+    using JudoApp.Data.Models;
 
     using JudoApp.Data.Repository.Interfaces;
     using JudoApp.Services.Data.Interfaces;

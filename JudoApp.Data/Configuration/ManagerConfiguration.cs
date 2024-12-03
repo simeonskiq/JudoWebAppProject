@@ -15,11 +15,6 @@
                 .HasKey(m => m.Id);
 
             builder
-                .Property(m => m.Reason)
-                .IsRequired()
-                .HasMaxLength(ReasonMaxLenght);
-
-            builder
                 .Property(m => m.WorkPhoneNumber)
                 .IsRequired()
                 .HasMaxLength(PhoneNumberMaxLength);
