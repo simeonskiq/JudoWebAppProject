@@ -23,7 +23,7 @@
         public async Task<IActionResult> Index()
         {
             var pendingRequests = await this.managerRequestService.GetPendingRequestsAsync();
-            return View("PendingRequests", pendingRequests);
+            return View();
         }
 
         [HttpPost]

@@ -222,3 +222,58 @@ nav .auth-links {
             color: #fff;
             border-color: #ff3d00;
         }
+nav .nav-items .dropdown {
+    position: relative;
+}
+
+    nav .nav-items .dropdown .dropdown-toggle {
+        cursor: pointer;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+        nav .nav-items .dropdown .dropdown-toggle:hover {
+            background-color: #ff3d00;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+    nav .nav-items .dropdown .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #14181f;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        min-width: 150px;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+        nav .nav-items .dropdown .dropdown-menu.show {
+            display: block;
+        }
+
+        nav .nav-items .dropdown .dropdown-menu li {
+            list-style: none;
+            padding: 10px 15px;
+        }
+
+            nav .nav-items .dropdown .dropdown-menu li a {
+                color: #fff;
+                font-size: 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                nav .nav-items .dropdown .dropdown-menu li a:hover {
+                    background-color: #ff3d00;
+                    color: #fff;
+                    border-radius: 5px;
+                }

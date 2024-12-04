@@ -1,4 +1,7 @@
-﻿<div class="container mt-5">
+﻿@using JudoApp.Web.ViewModels.Admin.UserManagement
+@model IEnumerable<AllUsersViewModel>
+
+<div class="container mt-5">
     <div class="text-center">
         <h1 class="display-4 mb-4 text-primary">Welcome to the Admin Dashboard</h1>
         <p class="lead mb-5 text-muted">Manage your application using the sections below:</p>
@@ -22,10 +25,10 @@
             <div class="card shadow h-100 border-0">
                 <div class="card-body d-flex flex-column align-items-center text-center">
                     <i class="fas fa-film fa-3x text-secondary mb-3"></i>
-                    <h5 class="card-title">Manage Cinemas</h5>
-                    <p class="card-text text-muted">Create, update, and delete cinema entries.</p>
-                    <a asp-area="Admin" asp-controller="CinemaManagement" asp-action="Index" class="btn btn-secondary mt-auto w-100">
-                        Go to Cinemas
+                    <h5 class="card-title">Manage Clubs</h5>
+                    <p class="card-text text-muted">Create, update, and delete club entries.</p>
+                    <a asp-area="Admin" asp-controller="ClubManagement" asp-action="Index" class="btn btn-secondary mt-auto w-100">
+                        Go to Clubs
                     </a>
                 </div>
             </div>
@@ -35,10 +38,10 @@
             <div class="card shadow h-100 border-0">
                 <div class="card-body d-flex flex-column align-items-center text-center">
                     <i class="fas fa-video fa-3x text-info mb-3"></i>
-                    <h5 class="card-title">Manage Movies</h5>
-                    <p class="card-text text-muted">Add new movies, edit details, or remove them.</p>
+                    <h5 class="card-title">Manage Judges</h5>
+                    <p class="card-text text-muted">Add new judges, edit or remove them.</p>
                     <a asp-area="Admin" asp-controller="MovieManagement" asp-action="Index" class="btn btn-info mt-auto w-100">
-                        Go to Movies
+                        Go to Judges
                     </a>
                 </div>
             </div>

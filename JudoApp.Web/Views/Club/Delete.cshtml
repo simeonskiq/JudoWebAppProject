@@ -1,7 +1,7 @@
 ﻿@using JudoApp.Web.ViewModels.Club
 @model DeleteClubViewModel
 
-<h2>Delete Cinema</h2>
+<h2>Delete Club</h2>
 
 @if (TempData["ErrorMessage"] != null)
 {
@@ -10,7 +10,7 @@
     </div>
 }
 
-<p>Are you sure you want to delete the cinema: <strong>@Model.Name - @Model.Address</strong>?</p>
+<p>Are you sure you want to delete the Club: <strong>@Model.Name - @Model.Address</strong>?</p>
 
 <form asp-action="SoftDeleteConfirmed" method="post">
     @Html.AntiForgeryToken()

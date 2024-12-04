@@ -24,9 +24,6 @@
 
         public static IApplicationBuilder SeedAdministrator(this IApplicationBuilder app, string email, string username, string password)
         {
-            email = "simeon226@abv.bg";
-            username = "simo";
-            password = "pass123";
 
             using IServiceScope serviceScope = app.ApplicationServices.CreateAsyncScope();
             IServiceProvider serviceProvider = serviceScope.ServiceProvider;
