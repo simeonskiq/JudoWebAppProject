@@ -24,44 +24,70 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="menu-icon">
-                <span class="fas fa-bars"></span>
-            </div>
-            <div class="logo">
-                <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="/Images/Index_Logo.png" alt="Club Image">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/Images/Index_Logo.png" alt="Club Image" class="navbar-logo">
                 </a>
-            </div>
-            <div class="nav-items">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Club" asp-action="Index">Clubs</a></li>
-                @if (this.User?.Identity?.IsAuthenticated ?? false)
-                {
-                    @if (await this.managerService.IsUserManagerAsync(this.User.GetUserId()))
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Judge" asp-action="Index">Judges</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Submit Request</a>
+                        </li>
+                    </ul>
+                    @if (this.User?.Identity?.IsAuthenticated ?? false)
                     {
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" id="managerDropdown" role="button">
-                                Manager
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="managerDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Manage">Manage Clubs</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="UserManagement" asp-action="Manage">Manage Users</a>
-                                </li>
-                            </ul>
+                        @if (await this.managerService.IsUserManagerAsync(this.User.GetUserId()))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="Admin" asp-page="/Home/Index" asp-controller="Home" asp-action="Manage">Admin Panel</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="UserManagement" asp-action="Manage">Manage Users</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        }
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="fas fa-user-circle me-2" style="font-size: 2.5em"></span>
+                                    <span style="font-size: 1.2em;">@this.User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li class="auth-links">
+                                        <form class="auth-links" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" id="logoutForm">
+                                            <button type="submit" class="nav-link btn btn-link p-0" style="text-decoration: none;">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }else 
+                    {
+                        <li class="auth-links">
+                            <a class="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="auth-links">
+                            <a class="sign-in" asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
                     }
-                }
-                <li><a asp-area="" asp-controller="Judge" asp-action="Index">Judges</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Submit Request</a>
+                </div>
             </div>
-            <partial name="_LoginPartial" />
         </nav>
     </header>
     <div class="container">

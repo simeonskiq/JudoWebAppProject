@@ -207,7 +207,7 @@ nav .auth-links {
 }
 
     nav .auth-links a {
-        color: #fff;
+        color: gray;
         font-size: 16px;
         font-weight: 500;
         text-decoration: none;
@@ -256,24 +256,18 @@ nav .nav-items .dropdown {
         overflow: hidden;
     }
 
-        nav .nav-items .dropdown .dropdown-menu.show {
-            display: block;
-        }
 
-        nav .nav-items .dropdown .dropdown-menu li {
-            list-style: none;
-            padding: 10px 15px;
-        }
 
-            nav .nav-items .dropdown .dropdown-menu li a {
-                color: #fff;
-                font-size: 16px;
-                text-decoration: none;
-                display: block;
-            }
+.navbar-logo {
+    width: 70px; /* Adjust size as needed */
+    height: 70px; /* Ensure it matches the width for a perfect circle */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits perfectly inside the circle */
+}
 
-                nav .nav-items .dropdown .dropdown-menu li a:hover {
-                    background-color: #ff3d00;
-                    color: #fff;
-                    border-radius: 5px;
-                }
+.nav-link {
+    color: #000; /* Ensure the color matches other nav links */
+    font-family: inherit;
+    font-size: 1rem;
+    text-decoration: none;
+}

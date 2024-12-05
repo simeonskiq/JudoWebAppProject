@@ -10,6 +10,7 @@ namespace JudoApp.Web
     using JudoApp.Data.Models;
     using JudoApp.Services.Data.Interfaces;
     using JudoApp.Web.ViewModels;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Program
     {
@@ -88,6 +89,11 @@ namespace JudoApp.Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            builder.Services.AddControllersWithViews(cfg =>
+            {
+                cfg.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
 
             app.ApplyMigrations();
 
