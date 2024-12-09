@@ -9,7 +9,7 @@
             public const int AddressMinLenght = 20;
             public const int AddressMaxLenght = 100;
             public const int PhoneMinLenght = 4;
-            public const int PhoneMaxLenght = 15;
+            public const int PhoneMaxLenght = 20;
             public const int CityMinLenght = 3;
             public const int CityMaxLenght = 15;
             public const int EmailMinLenght = 25;
