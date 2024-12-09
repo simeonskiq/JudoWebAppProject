@@ -1,4 +1,4 @@
-﻿namespace JudoApp.Web.Controllers
+﻿    namespace JudoApp.Web.Controllers
 {
     using JudoApp.Services.Data.Interfaces;
     using JudoApp.Web.ViewModels.Judge;
@@ -129,7 +129,7 @@
                 return this.View(formModel);
             }
 
-            return this.RedirectToAction(nameof(Details), "Judge", new { id = formModel.Id });
+            return this.RedirectToAction(nameof(Index), "Judge", new { id = formModel.Id });
         }
 
         [HttpGet]

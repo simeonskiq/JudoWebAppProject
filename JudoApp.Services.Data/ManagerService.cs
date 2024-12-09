@@ -1,19 +1,23 @@
 ﻿namespace JudoApp.Services.Data
 {
 
-    using Microsoft.EntityFrameworkCore;
     using JudoApp.Data.Models;
 
-    using JudoApp.Data.Repository.Interfaces;
     using JudoApp.Services.Data.Interfaces;
+    using Microsoft.AspNetCore.Identity;
+
 
     public class ManagerService : BaseService, IManagerService
     {
-        private readonly IRepository<Manager, Guid> managersRepository;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole<Guid>> roleManager;
 
-        public ManagerService(IRepository<Manager, Guid> managersRepository)
+
+        public ManagerService(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole<Guid>> roleManager)
         {
-            this.managersRepository = managersRepository;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         public async Task<bool> IsUserManagerAsync(string? userId)
@@ -24,11 +28,16 @@
                 return false;
             }
 
-            bool result = await this.managersRepository
-                .GetAllAttached()
-                .AnyAsync(m => m.UserId.ToString().ToLower() == userId);
+            var user = await userManager.FindByIdAsync(userId);
 
-            return result;
+            if (user == null)
+            {
+                return false;
+            }
+
+            var roles = await userManager.GetRolesAsync(user);
+            return roles.Contains("Admin");
+
         }
     }
 }

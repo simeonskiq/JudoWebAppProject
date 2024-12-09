@@ -107,7 +107,8 @@
             bool isManager = await this.IsUserManagerAsync();
             if (!isManager)
             {
-                // TODO: Implement notifications for error and warning messages!
+                ModelState.AddModelError(string.Empty, "You are not registered as a manager! Please contact administrator");
+
                 return this.RedirectToAction(nameof(Index));
             }
 

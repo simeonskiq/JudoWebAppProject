@@ -26,16 +26,14 @@
 
         public string City { get; set; } = null!;
 
-        [Required]
         [MinLength(PhoneMinLenght)]
         [MaxLength(PhoneMaxLenght)]
 
-        public int PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
-        [Required]
         [MinLength(EmailMinLenght)]
         [MaxLength(EmailMaxLenght)]
-        public string Email { get; set; } = null!;
+        public string? Email { get; set; }
 
         [MinLength(ImageUrlMinLength)]
         [MaxLength(ImageUrlMaxLength)]

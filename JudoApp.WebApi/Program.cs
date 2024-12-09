@@ -15,6 +15,7 @@ namespace JudoApp.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
             string connectionString = builder.Configuration.GetConnectionString("SQLServer")!;
+            string? judoWebAppOrigin = builder.Configuration.GetValue<string>("Client Origins:JudoWebApp");
 
             // Add services to the container.
             builder.Services
@@ -38,7 +39,19 @@ namespace JudoApp.WebApi
                         .AllowAnyMethod()
                         .AllowAnyOrigin();
                 });
-            });
+
+            if (!String.IsNullOrWhiteSpace(judoWebAppOrigin))
+            {
+                cfg.AddPolicy("AllowMyServer", policyBld =>
+                {
+                    policyBld
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .WithOrigins(judoWebAppOrigin);
+                });
+            }
+        });
 
             builder.Services.RegisterRepositories(typeof(ApplicationUser).Assembly);
             builder.Services.RegisterUserDefinedServices(typeof(IClubService).Assembly);
@@ -58,7 +71,10 @@ namespace JudoApp.WebApi
 
             app.UseAuthorization();
 
-            app.UseCors("AllowAll");
+            if (!String.IsNullOrWhiteSpace(judoWebAppOrigin))
+            {
+                app.UseCors("AllowMyServer");
+            }
 
             app.MapControllers();
 

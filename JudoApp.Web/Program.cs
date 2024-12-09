@@ -48,7 +48,10 @@ namespace JudoApp.Web
             builder.Services.RegisterRepositories(typeof(ApplicationUser).Assembly);
             builder.Services.RegisterUserDefinedServices(typeof(IClubService).Assembly);
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(cfg =>
+            {
+                cfg.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             builder.Services.AddRazorPages();
 
             WebApplication app = builder.Build();
@@ -89,11 +92,6 @@ namespace JudoApp.Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-
-            builder.Services.AddControllersWithViews(cfg =>
-            {
-                cfg.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            });
 
             app.ApplyMigrations();
 

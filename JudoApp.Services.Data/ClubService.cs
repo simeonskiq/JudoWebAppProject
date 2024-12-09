@@ -54,6 +54,7 @@
                     City = club.City,
                     PhoneNumber = club.PhoneNumber,
                     Email = club.Email,
+                    ImageUrl = club.ImageUrl,
                 };
             }
 
