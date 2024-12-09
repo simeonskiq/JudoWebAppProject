@@ -1,0 +1,79 @@
+﻿@using JudoApp.Web.ViewModels.Article
+@model EditArticleFormModel
+
+<h2>Edit Article</h2>
+
+<div class="flex-shrink-0 p-3 bg-white" style="width: 280px; position: fixed; top: 100px; left: 0; bottom: 4em; z-index: 1050;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-5 fw-semibold">Collapsible</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                Manage Clubs
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Manage">Manage Clubs</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Create">Create Club</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                Manage Judges
+            </button>
+            <div class="collapse" id="dashboard-collapse" style="">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Create">Create Judge</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                Manage Articles
+            </button>
+            <div class="collapse" id="orders-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Manage">Manage Articles</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Create">Create Articles</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Tittle" class="control-label"></label>
+        <input asp-for="Tittle" class="form-control" />
+        <span asp-validation-for="Tittle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Manage" class="btn btn-secondary ml-2">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
