@@ -8,14 +8,14 @@
 <h2>Judges</h2>
 
 <div class="row">
-    @foreach (JudgeIndexViewModel club in Model)
+    @foreach (JudgeIndexViewModel judge in Model)
     {
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="~/images/LokoRuse_logo.jpg" class="card-img-top" alt="Club Image" style="height: 200px; object-fit: cover;">
+                <img src="@judge.ImageUrl" class="card-img-top" alt="Judge Image" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">@club.Name</h5>
-                    <p class="card-text">@club.Description</p>
+                    <h5 class="card-title">@judge.Name</h5>
+                    <p class="card-text">@judge.Description</p>
                 </div>
             </div>
         </div>

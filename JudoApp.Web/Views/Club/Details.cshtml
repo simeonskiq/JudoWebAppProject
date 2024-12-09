@@ -10,7 +10,7 @@
     ViewData["Title"] = "Club Details";
 }
 
-<img src="~/images/LokoRuse_logo.jpg" class="card-img-top" alt="Club Image" style="height: 200px; object-fit: cover;">
+<img src="@Model.ImageUrl" class="card-img-top" alt="Club Image" style="height: 200px; object-fit: cover;">
 <h2 class="my-4 text-center display-4">@Model.Name</h2>
 <p class="text-center lead"><strong>Address:</strong> @Model.Address</p>
 <p class="text-center lead"><strong>City:</strong> @Model.City</p>

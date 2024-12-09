@@ -1,14 +1,7 @@
 ﻿@using JudoApp.Web.ViewModels.Club
-@model DeleteClubViewModel
+@model IEnumerable<ClubIndexViewModel>
 
-<h2>Delete Club</h2>
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
+<h2 class="my-4 text-center">Manage Clubs</h2>
 
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; position: fixed; top: 100px; left: 0; bottom: 4em; z-index: 1050;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
@@ -55,11 +48,42 @@
 </div>
 
 
-<p>Are you sure you want to delete the Club: <strong>@Model.Name</strong>?</p>
-
-<form asp-action="SoftDeleteConfirmed" method="post">
-    @Html.AntiForgeryToken()
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a asp-action="Manage" class="btn btn-secondary">Cancel</a>
-</form>
+<table class="table table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col" class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(club.ImageUrl))
+                    {
+                        <img src="@club.ImageUrl" alt="@club.Name" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                        <span>No Image Available</span>
+                    }
+                </td>
+                <td>@club.Name</td>
+                <td>@club.Address</td>
+                <td>@club.City</td>
+                <td>@club.PhoneNumber</td>
+                <td>@club.Email</td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@club.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@club.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

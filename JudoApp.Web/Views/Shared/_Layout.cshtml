@@ -14,15 +14,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JudoApp.Web</title>
+    <title>@ViewData["Title"] Bulgarian Judo Federation</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/NavBar.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JudoApp.Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="icon" href="~/favicon.svg" type="image/svg">
 </head>
 <body>
+    <partial name="_NotificationsPartial" />
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -43,25 +47,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Judge" asp-action="Index">Judges</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Submit Request</a>
-                        </li>
                     </ul>
                     @if (this.User?.Identity?.IsAuthenticated ?? false)
                     {
-                        @if (await this.managerService.IsUserManagerAsync(this.User.GetUserId()))
-                        {
-                            <li>
-                                <a class="dropdown-item" asp-area="Admin" asp-page="/Home/Index" asp-controller="Home" asp-action="Manage">Admin Panel</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" asp-area="" asp-controller="UserManagement" asp-action="Manage">Manage Users</a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                        }
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,6 +57,13 @@
                                     <span style="font-size: 1.2em;">@this.User.Identity.Name</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    @if (await this.managerService.IsUserManagerAsync(this.User.GetUserId()))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                    }
                                     <li class="auth-links">
                                         <form class="auth-links" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" id="logoutForm">
                                             <button type="submit" class="nav-link btn btn-link p-0" style="text-decoration: none;">Logout</button>
@@ -77,14 +72,17 @@
                                 </ul>
                             </li>
                         </ul>
-                    }else 
+                    }
+                    else
                     {
-                        <li class="auth-links">
-                            <a class="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                        </li>
-                        <li class="auth-links">
-                            <a class="sign-in" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                        </li>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="auth-links">
+                                <a class="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                            <li class="auth-links">
+                                <a class="sign-in" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                        </ul>
                     }
                 </div>
             </div>
