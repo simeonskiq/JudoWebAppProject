@@ -1,5 +1,9 @@
 ﻿@using JudoApp.Web.ViewModels.Club
-@model IEnumerable<ClubIndexViewModel>
+@using JudoApp.Services.Data.Interfaces
+@using JudoApp.Web.Infrastructure.Extensions
+@model AllClubsSearchFilterViewModel
+
+@inject IManagerService managerService
 
 @{
     ViewData["Title"] = "All Clubs";
@@ -7,18 +11,125 @@
 
 <h2>Clubs</h2>
 
-<div class="row">
-    @foreach (var club in Model)
-    {
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img src="@club.ImageUrl" class="card-img-top" alt="Club Image" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">@club.Name</h5>
-                    <p class="card-text">@club.PhoneNumber</p>
-                    <a asp-action="Details" asp-route-id="@club.Id" class="btn btn-primary">View Club Details</a>
-                </div>
+<form method="get" asp-action="Index" class="mb-4">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="SearchQuery">Search by keyword</label>
+                <input asp-for="SearchQuery" class="form-control" placeholder="Search by Name..." />
             </div>
         </div>
-    }
-</div>
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="CityFilter">Filter by city</label>
+                <select asp-for="CityFilter" class="form-control">
+                    @if (Model.AllCityes != null)
+                    {
+                        <option value="">Reset city filter</option>
+                        foreach (string city in Model.AllCityes)
+                        {
+                            <option value="@city">@city</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label asp-for="EntitiesPerPage">Show Clubs per page</label>
+                <select asp-for="EntitiesPerPage" class="form-control">
+                    @for (int i = 5; i <= 30; i += 5)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col col d-flex align-items-end">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Clubs != null)
+        {
+            @foreach (ClubIndexViewModel club in Model.Clubs)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(club.ImageUrl))
+                        {
+                            <img src="@club.ImageUrl" alt="@club.Name" style="width: 100px; height: auto;" />
+                        }
+                        else
+                        {
+                            <span>No Image Available</span>
+                        }
+                    </td>
+                    <td>@club.Name</td>
+                    <td>@club.Address</td>
+                    <td>@club.City</td>
+                    <td>@club.PhoneNumber</td>
+                    <td>@club.Email</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination">
+        @if (Model.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index"
+                   asp-route-currentPage="@(Model.CurrentPage - 1)"
+                   asp-route-searchQuery="@Model.SearchQuery"
+                   asp-route-cityFilter="@Model.CityFilter"
+                   asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                    Previous
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-currentPage="@i"
+                   asp-route-searchQuery="@Model.SearchQuery"
+                   asp-route-cityFilter="@Model.CityFilter"
+                   asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                    @i
+                </a>
+            </li>
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index"
+                   asp-route-currentPage="@(Model.CurrentPage + 1)"
+                   asp-route-searchQuery="@Model.SearchQuery"
+                   asp-route-cityFilter="@Model.CityFilter"
+                   asp-route-entitiesPerPage="@Model.EntitiesPerPage">
+                    Next
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

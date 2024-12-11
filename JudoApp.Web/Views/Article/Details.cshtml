@@ -1,0 +1,17 @@
+﻿@using JudoApp.Web.ViewModels.Article;
+@model ArticleDetailsViewModel
+
+@{
+    ViewData["Title"] = "Article Details";
+}
+
+<img src="@Model.ImageUrl" class="card-img-top" alt="Article Image" style="height: 200px; object-fit: cover;">
+<h2 class="my-4 text-center display-4">@Model.Tittle</h2>
+<p class="text-center lead">@Model.Description</p>
+<p class="text-center lead"><strong>Uploaded on:</strong><br/>@Model.DateUploaded UTC</p>
+
+<div class="text-center mt-5">
+    <a asp-action="Index" class="btn btn-secondary btn-lg px-4">
+        <i class="bi bi-arrow-left-circle"></i> Back to Articles
+    </a>
+</div>

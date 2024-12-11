@@ -12,6 +12,8 @@
 
 <p>Are you sure you want to delete the Judge: <strong>@Model.Name</strong>?</p>
 
+<partial name="_AdminPanelPartial" />
+
 <form asp-action="SoftDeleteConfirmed" method="post">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="Id" />

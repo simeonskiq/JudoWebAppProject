@@ -7,72 +7,103 @@
 
 <h2>Add a New Article</h2>
 
-<div class="flex-shrink-0 p-3 bg-white" style="width: 280px; position: fixed; top: 100px; left: 0; bottom: 4em; z-index: 1050;">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-5 fw-semibold">Collapsible</span>
-    </a>
-    <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                Manage Clubs
-            </button>
-            <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Manage">Manage Clubs</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Create">Create Club</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                Manage Judges
-            </button>
-            <div class="collapse" id="dashboard-collapse" style="">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Create">Create Judge</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                Manage Articles
-            </button>
-            <div class="collapse" id="orders-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Manage">Manage Articles</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Create">Create Articles</a></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
+<partial name="_AdminPanelPartial" />
+
+<style>
+
+    .form-container {
+        max-width: 600px;
+        margin: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-group .submit {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button-group .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .button-group .clear {
+            background-color: #f0ad4e;
+            color: white;
+        }
+</style>
+
+<div class="form-container">
+    <form asp-action="Create" method="post" id="customForm">
+        <div class="form-group">
+            <label asp-for="Tittle" class="control-label"></label>
+            <input asp-for="Tittle" class="form-control" />
+            <span asp-validation-for="Tittle" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImageUrl" class="control-label"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3 button-group">
+            <button type="submit" class="btn btn-primary submit">Add Article</button>
+            <a asp-action="Index" class="btn btn-secondary cancel">Cancel</a>
+            <button type="button" class="btn btn-warning clear" onclick="clearForm()">Clear</button>
+        </div>
+    </form>
 </div>
 
-
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Tittle" class="control-label"></label>
-        <input asp-for="Tittle" class="form-control" />
-        <span asp-validation-for="Tittle" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ImageUrl" class="control-label"></label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Add Article</button>
-    </div>
-</form>
+<script>
+        function clearForm() {
+            document.getElementById('customForm').reset();
+    }
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
