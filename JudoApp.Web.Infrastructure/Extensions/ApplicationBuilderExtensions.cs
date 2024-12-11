@@ -117,7 +117,7 @@
             return applicationUser;
         }
 
-        public static IApplicationBuilder SeedMovies(this IApplicationBuilder app, string jsonPath)
+        public static IApplicationBuilder SeedClubs(this IApplicationBuilder app, string jsonPath)
         {
             using IServiceScope serviceScope = app.ApplicationServices.CreateAsyncScope();
             IServiceProvider serviceProvider = serviceScope.ServiceProvider;

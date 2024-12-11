@@ -88,7 +88,7 @@ namespace JudoApp.Web
             if (app.Environment.IsDevelopment())
             {
                 app.SeedAdministrator(adminEmail, adminUsername, adminPassword);
-                app.SeedMovies(jsonPath);
+                app.SeedClubs(jsonPath);
             }  
 
             app.MapControllerRoute(
