@@ -10,6 +10,8 @@
 
         public string? ImageUrl { get; set; }
 
+        public DateTime DateUploaded { get; set; } = DateTime.UtcNow;
+
         public bool IsDeleted { get; set; }
     }
 }

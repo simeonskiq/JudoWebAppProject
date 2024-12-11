@@ -14,12 +14,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JudoApp.Common\JudoApp.Common.csproj" />
     <ProjectReference Include="..\JudoApp.Data.Models\JudoApp.Data.Models.csproj" />
+    <ProjectReference Include="..\JudoApp.Services.Mapping\JudoApp.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

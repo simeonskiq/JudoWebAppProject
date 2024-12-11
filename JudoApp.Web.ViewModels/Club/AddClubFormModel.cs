@@ -35,7 +35,6 @@
         [MaxLength(EmailMaxLenght)]
         public string? Email { get; set; }
 
-        [MinLength(ImageUrlMinLength)]
         [MaxLength(ImageUrlMaxLength)]
 
         public string? ImageUrl { get; set; }

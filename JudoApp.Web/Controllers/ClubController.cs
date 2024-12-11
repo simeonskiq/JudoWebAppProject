@@ -17,12 +17,22 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(AllClubsSearchFilterViewModel inputModel)
         {
-            IEnumerable<ClubIndexViewModel> clubs =
-                await this.clubService.IndexGetAllOrderedByNameAsync();
+            IEnumerable<ClubIndexViewModel> allClubs =
+                await this.clubService.GetAllClubsAsync(inputModel);
+            int allClubsCount = await this.clubService.GetClubsCountByFilterAsync(inputModel);
+            AllClubsSearchFilterViewModel viewModel = new AllClubsSearchFilterViewModel
+            {
+                Clubs = allClubs,
+                SearchQuery = inputModel.SearchQuery,
+                CityFilter = inputModel.CityFilter,
+                CurrentPage = inputModel.CurrentPage,
+                TotalPages = (int)Math.Ceiling((double)allClubsCount /
+                                               inputModel.EntitiesPerPage!.Value)
+            };
 
-            return this.View(clubs);
+            return this.View(viewModel);
         }
 
         [HttpGet]
@@ -95,7 +105,7 @@
             }
 
             IEnumerable<ClubIndexViewModel> clubs =
-                await this.clubService.IndexGetAllOrderedByNameAsync();
+                await this.clubService.GetAllClubsAsync(new AllClubsSearchFilterViewModel());
 
             return this.View(clubs);
         }

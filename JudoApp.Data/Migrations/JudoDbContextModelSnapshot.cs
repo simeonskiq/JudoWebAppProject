@@ -117,7 +117,7 @@ namespace JudoApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
 
                     b.HasData(
                         new
@@ -178,7 +178,7 @@ namespace JudoApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clubs");
+                    b.ToTable("Clubs", (string)null);
 
                     b.HasData(
                         new
@@ -227,7 +227,7 @@ namespace JudoApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Judges");
+                    b.ToTable("Judges", (string)null);
 
                     b.HasData(
                         new
@@ -265,7 +265,7 @@ namespace JudoApp.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Managers");
+                    b.ToTable("Managers", (string)null);
                 });
 
             modelBuilder.Entity("JudoApp.Data.Models.ManagerRequest", b =>
@@ -293,7 +293,7 @@ namespace JudoApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ManagerRequests");
+                    b.ToTable("ManagerRequests", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

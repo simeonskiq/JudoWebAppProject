@@ -1,0 +1,47 @@
+[
+	{
+		"guid": "3b2a1e78-3cd3-4b8f-8b59-2c3e5d6f9c34",
+		"name": "Judo Club Example",
+		"address": "123 Main St, Sofia",
+		"city": "Sofia",
+		"phonenumber": "+359 88 1234567",
+		"email": "contact@example.com",
+		"imageurl": "https://judo.bg/content/files/2024/08/19/%D0%94%D0%B6%D1%83%D0%B4%D0%BE_%D1%86%D0%B5%D0%BD%D1%82%D1%8A%D1%80_%D0%9A%D0%B0%D0%BD%D0%BE_thumb.jpg"
+	},
+	{
+		"guid": "7f4d5a62-a8f2-456c-91e3-d9b9d7c7f8a9",
+		"name": "Judo Club Another Example",
+		"address": "456 Side St, Plovdiv",
+		"city": "Plovdiv",
+		"phonenumber": "+359 88 7654321",
+		"email": "info@anotherexample.com",
+		"imageurl": "https://judo.bg/content/files/2021/05/18/%D0%90%D0%A1%D0%9A_%D0%A1%D0%BB%D0%B8%D0%B2%D0%B5%D0%BD_thumb.jpg"
+	},
+	{
+		"guid": "dcbf2b3c-dde1-42d4-82a0-cb5821f687d8",
+		"name": "Judo Club Varna",
+		"address": "789 Beach Blvd, Varna",
+		"city": "Varna",
+		"phonenumber": "+359 88 2345678",
+		"email": "varna@example.com",
+		"imageurl": "https://judo.bg/content/files/2021/04/28/%D1%82%D0%B0%D1%82%D0%B0%D0%BC%D0%B86_thumb.jpg"
+	},
+	{
+		"guid": "ed91c2f4-f6b9-4bb8-926f-8f8ccef7d89a",
+		"name": "Judo Club Ruse",
+		"address": "321 Riverside Dr, Ruse",
+		"city": "Ruse",
+		"phonenumber": "+359 88 8765432",
+		"email": "ruse@example.com",
+		"imageurl": "https://judo.bg/content/files/2021/05/18/Shampion_thumb.jpg"
+	},
+	{
+		"guid": "9f8a7e6b-bd31-48c7-8f1d-a7c56f8b45c6",
+		"name": "Judo Club Stara Zagora",
+		"address": "654 Park Ave, Stara Zagora",
+		"city": "Stara Zagora",
+		"phonenumber": "+359 88 1122334",
+		"email": "stara@example.com",
+		"imageurl": "https://judo.bg/content/files/2021/04/28/%D0%B3%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE1_thumb.jpg"
+	}
+]

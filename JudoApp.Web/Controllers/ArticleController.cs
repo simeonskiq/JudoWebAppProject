@@ -154,7 +154,7 @@
                 return this.View(formModel);
             }
 
-            return this.RedirectToAction(nameof(Details), "Articles", new { id = formModel.Id });
+            return this.RedirectToAction(nameof(Details), "Article", new { id = formModel.Id });
         }
 
         [HttpGet]

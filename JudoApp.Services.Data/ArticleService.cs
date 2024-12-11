@@ -52,6 +52,8 @@
                     Id = article.Id.ToString(),
                     Tittle = article.Tittle,
                     Description = article.Description,
+                    ImageUrl = article.ImageUrl,
+                    DateUploaded = article.DateUploaded,
                 };
             }
 

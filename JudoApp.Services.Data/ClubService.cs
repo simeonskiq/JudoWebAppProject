@@ -16,16 +16,34 @@
             this.clubRepository = clubRepository;
         }
 
-        public async Task<IEnumerable<ClubIndexViewModel>> IndexGetAllOrderedByNameAsync()
+        public async Task<IEnumerable<ClubIndexViewModel>> GetAllClubsAsync(AllClubsSearchFilterViewModel inputModel)
         {
-            IEnumerable<ClubIndexViewModel> clubs = await this.clubRepository
-                .GetAllAttached()
-                .Where(c => c.IsDeleted == false)
-                .OrderBy(c => c.Name)
+            IQueryable<Club> allClubsQuery = this.clubRepository
+                .GetAllAttached();
+
+            if (!String.IsNullOrWhiteSpace(inputModel.SearchQuery))
+            {
+                allClubsQuery = allClubsQuery
+                    .Where(m => m.Name.ToLower().Contains(inputModel.SearchQuery.ToLower()));
+            }
+
+            if (!String.IsNullOrWhiteSpace(inputModel.CityFilter))
+            {
+                allClubsQuery = allClubsQuery
+                    .Where(m => m.City.ToLower() == inputModel.CityFilter.ToLower());
+            }
+
+            if (inputModel.CurrentPage.HasValue &&
+                inputModel.EntitiesPerPage.HasValue)
+            {
+                allClubsQuery = allClubsQuery
+                    .Skip(inputModel.EntitiesPerPage.Value * (inputModel.CurrentPage.Value - 1))
+                    .Take(inputModel.EntitiesPerPage.Value);
+            }
+
+            return await allClubsQuery
                 .To<ClubIndexViewModel>()
                 .ToArrayAsync();
-
-            return clubs;
         }
 
         public async Task AddClubAsync(AddClubFormModel model)
@@ -104,6 +122,29 @@
 
             clubToDelete.IsDeleted = true;
             return await this.clubRepository.UpdateAsync(clubToDelete);
+        }
+
+        public async Task<IEnumerable<string>> GetAllNamesAsync()
+        {
+            IEnumerable<string> allNames = await this.clubRepository
+                .GetAllAttached()
+                .Select(m => m.Name)
+                .Distinct()
+                .ToArrayAsync();
+            return allNames;
+        }
+        public async Task<int> GetClubsCountByFilterAsync(AllClubsSearchFilterViewModel inputModel)
+        {
+            AllClubsSearchFilterViewModel inputModelCopy = new AllClubsSearchFilterViewModel()
+            {
+                CurrentPage = null,
+                EntitiesPerPage = null,
+                SearchQuery = inputModel.SearchQuery,
+                CityFilter = inputModel.CityFilter,
+            };
+            int clubsCount = (await this.GetAllClubsAsync(inputModelCopy))
+                .Count();
+            return clubsCount;
         }
     }
 }

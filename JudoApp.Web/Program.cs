@@ -11,6 +11,7 @@ namespace JudoApp.Web
     using JudoApp.Services.Data.Interfaces;
     using JudoApp.Web.ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using JudoApp.Data.Seeding.DataTransferObjects;
 
     public class Program
     {
@@ -21,8 +22,9 @@ namespace JudoApp.Web
             string adminEmail = builder.Configuration.GetValue<string>("Administrator:Email")!;
             string adminUsername = builder.Configuration.GetValue<string>("Administrator:Username")!;
             string adminPassword = builder.Configuration.GetValue<string>("Administrator:Password")!;
+            string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                builder.Configuration.GetValue<string>("Seed:ClubsJson")!);
 
-            // Add services to the container.
             builder.Services
                 .AddDbContext<JudoDbContext>(options =>
                 {
@@ -58,6 +60,9 @@ namespace JudoApp.Web
 
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).Assembly);
 
+            AutoMapperConfig
+                  .RegisterMappings(typeof(ErrorViewModel).Assembly, typeof(ImportClubDto).Assembly);
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -80,7 +85,11 @@ namespace JudoApp.Web
 
             app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
 
-            app.SeedAdministrator(adminEmail, adminUsername, adminPassword);
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdministrator(adminEmail, adminUsername, adminPassword);
+                app.SeedMovies(jsonPath);
+            }  
 
             app.MapControllerRoute(
                 name: "Areas",

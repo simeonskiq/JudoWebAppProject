@@ -2,6 +2,7 @@
 {
     using Data;
     using JudoApp.Data.Models;
+    using JudoApp.Data.Seeding;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -114,6 +115,21 @@
             }
 
             return applicationUser;
+        }
+
+        public static IApplicationBuilder SeedMovies(this IApplicationBuilder app, string jsonPath)
+        {
+            using IServiceScope serviceScope = app.ApplicationServices.CreateAsyncScope();
+            IServiceProvider serviceProvider = serviceScope.ServiceProvider;
+
+            Task.Run(async () =>
+            {
+                await DbSeeder.SeedClubsAsync(serviceProvider, jsonPath);
+            })
+                .GetAwaiter()
+                .GetResult();
+
+            return app;
         }
     }
 }

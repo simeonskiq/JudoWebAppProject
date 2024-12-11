@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JudoApp.Web.ViewModels.Article
+﻿namespace JudoApp.Web.ViewModels.Article
 {
-    public class DeleteArticleViewModel
+    using JudoApp.Data.Models;
+    using JudoApp.Services.Mapping;
+
+    public class DeleteArticleViewModel : IMapFrom<Article>
     {
         public string Id { get; set; } = null!;
 

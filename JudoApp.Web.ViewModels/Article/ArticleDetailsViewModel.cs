@@ -8,6 +8,8 @@
 
         public string Description { get; set; } = null!;
 
+        public DateTime DateUploaded { get; set; } = DateTime.UtcNow;
+
         public string? ImageUrl { get; set; }
     }
 }

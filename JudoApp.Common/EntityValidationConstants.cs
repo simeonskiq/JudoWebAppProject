@@ -4,6 +4,8 @@
     {
         public static class Club
         {
+            public const int IdMinLength = 36;
+            public const int IdMaxLength = 36;
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
             public const int AddressMinLenght = 20;
@@ -16,6 +18,7 @@
             public const int EmailMaxLenght = 85;
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
+            public const string CityFilterRegex = "^[A-Za-z]+(?:\\s+[A-Za-z]+)*$";
         }
 
         public static class Judge
@@ -31,7 +34,7 @@
         public static class Article
         {
             public const int TittleMinLenght = 20;
-            public const int TittleMaxLenght = 50;
+            public const int TittleMaxLenght = 100;
             public const int DescriptionMinLenght = 100;
             public const int DescriptionMaxLenght = 3000;
             public const int ImageUrlMinLength = 8;
