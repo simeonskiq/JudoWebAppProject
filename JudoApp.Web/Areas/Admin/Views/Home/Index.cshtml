@@ -38,6 +38,17 @@
             </div>
         </li>
         <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                Manage Products
+            </button>
+            <div class="collapse" id="orders-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Manage">Manage Products</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Create">Create Products</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#roles-collapse" aria-expanded="false">
                 Manage User Roles
             </button>

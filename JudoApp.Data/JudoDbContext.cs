@@ -28,6 +28,8 @@
 
         public virtual DbSet<ManagerRequest> ManagerRequests { get; set; } = null!;
 
+        public virtual DbSet<Product> Products { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

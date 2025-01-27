@@ -1,0 +1,22 @@
+﻿@using JudoApp.Web.ViewModels.Product
+@model DeleteProductViewModel
+
+<h2>Delete Product</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<partial name="_AdminPanelPartial" />
+
+<p>Are you sure you want to delete the Product: <strong>@Model.Name</strong>?</p>
+
+<form asp-action="SoftDeleteConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Manage" class="btn btn-secondary">Cancel</a>
+</form>

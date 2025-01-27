@@ -54,5 +54,17 @@
             public const int ReasonMinLength = 30;
             public const int ReasonMaxLength = 300;
         }
+
+        public static class Product
+        {
+            public const int NameMinLength = 10;
+            public const int NameMaxLength = 50;
+            public const int PriceMinLenght = 1;
+            public const int PriceMaxLenght = 10;
+            public const int DescriptionMinLenght = 100;
+            public const int DescriptionMaxLenght = 600;
+            public const int ImageUrlMinLength = 8;
+            public const int ImageUrlMaxLength = 2083;
+        }
     }
 }
