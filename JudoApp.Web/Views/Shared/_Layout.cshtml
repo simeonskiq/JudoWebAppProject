@@ -1,6 +1,10 @@
 ﻿@using JudoApp.Services.Data.Interfaces
 @using JudoApp.Web.Infrastructure.Extensions
 @using static JudoApp.Common.ApplicationConstants
+@inject ICartService CartService
+@{
+    var cartItemCount = CartService.GetCartItems().Count;
+}
 
 @inject IManagerService managerService
 @{
@@ -52,6 +56,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart"></i> Cart
+                                @if (cartItemCount > 0)
+                                {
+                                    <span class="badge bg-primary">@cartItemCount</span>
+                                }
+                            </a>
                         </li>
                     </ul>
                     @if (this.User?.Identity?.IsAuthenticated ?? false)
