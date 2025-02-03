@@ -47,14 +47,14 @@
                 {
                     Name = "Gainward GeForce RTX 4090 Phantom 24GB",
                     Description = "The Gainward GeForce RTX 4090 Phantom 24GB is a powerhouse graphics card designed for ultimate gaming and content creation performance. Featuring NVIDIA's cutting-edge Ada Lovelace architecture, it delivers groundbreaking AI-powered graphics, real-time ray tracing, and exceptional efficiency.",
-                    Price = "4759лв.",
+                    Price = "4759",
                     ImageUrl = "https://desktop.bg/system/images/491136/normal/gainward_geforce_rtx_4090_phantom_24gb.png"
                 },
                 new Product()
                 {
                     Name = "Logitech G102 LIGHTSYNC White",
                     Description = "The Logitech G102 LIGHTSYNC White is a high-performance gaming mouse designed for precision, speed, and style. Featuring a 6,000 DPI sensor, it delivers accurate tracking and responsiveness, making it perfect for both casual and competitive gaming. The LIGHTSYNC RGB technology offers customizable lighting",
-                    Price = "45лв.",
+                    Price = "45",
                     ImageUrl = "https://desktop.bg/system/images/249327/normal/910005824.jpg"
                 }
             };

@@ -125,16 +125,16 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("df1ad88f-cb91-41cd-80c3-01276449111c"),
-                            DateUploaded = new DateTime(2025, 2, 3, 0, 59, 24, 541, DateTimeKind.Utc).AddTicks(2697),
+                            Id = new Guid("8f5720ff-c9c6-4048-a9b0-0b60fd15d00b"),
+                            DateUploaded = new DateTime(2025, 2, 3, 18, 8, 8, 119, DateTimeKind.Utc).AddTicks(7961),
                             Description = "Artificial intelligence is no longer a concept confined to science fiction. From personal assistants like Siri and Alexa to advanced data analytics in healthcare, AI is revolutionizing industries and enhancing daily life. This article explores the current applications of AI, its impact on various sectors, and what the future may hold for this transformative technology.",
                             IsDeleted = false,
                             Tittle = "The Rise of AI in Everyday Life: Transforming How We Live and Work"
                         },
                         new
                         {
-                            Id = new Guid("47b3d8be-4ed8-4f3e-a8aa-6eebeaea8680"),
-                            DateUploaded = new DateTime(2025, 2, 3, 0, 59, 24, 541, DateTimeKind.Utc).AddTicks(2703),
+                            Id = new Guid("926ba48c-1a2e-4081-8a6e-4f80085869d7"),
+                            DateUploaded = new DateTime(2025, 2, 3, 18, 8, 8, 119, DateTimeKind.Utc).AddTicks(7969),
                             Description = "As environmental concerns grow, many are looking for ways to reduce their carbon footprint and live more sustainably. This article provides practical tips for adopting eco-friendly habits, from reducing plastic use to embracing renewable energy. Discover how small changes in daily routines can contribute to a healthier planet and promote long-term sustainability.",
                             IsDeleted = false,
                             Tittle = "Sustainable Living: Simple Changes for a Greener Future"
@@ -217,7 +217,7 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("edae0424-c65c-4805-9fe8-647d1e0dadde"),
+                            Id = new Guid("fbcb1071-dd73-4cf7-a965-7320c35a4cf8"),
                             Address = "Zala. „Dunav“, ul. „Chiprovci“ 40",
                             City = "Ruse",
                             IsDeleted = false,
@@ -226,7 +226,7 @@ namespace JudoApp.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9b865df1-a40c-4d2f-b182-597ccc1501b1"),
+                            Id = new Guid("3c13d452-1be6-4b49-b5b6-f326343cff38"),
                             Address = "bul. „Prof. Cvetan Lazarov“ №14",
                             City = "Sofia",
                             IsDeleted = false,
@@ -266,14 +266,14 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("df052109-94e4-4b62-8f14-c054b9e8e2e4"),
+                            Id = new Guid("644f034d-c3dc-4a74-807d-8ef523f9d56d"),
                             Description = "Pritejava licenz 'A' koito mu dava pravo da sudiistva na svetovni purvenstva",
                             IsDeleted = false,
                             Name = "Plamen Velikov"
                         },
                         new
                         {
-                            Id = new Guid("d8a1c926-166d-4c27-9f1a-cd7d86854a65"),
+                            Id = new Guid("0cfd002b-331d-4a9e-9199-ea4a96f8aa23"),
                             Description = "Pritejava licenz 'B' s pravo da sudiistva na kontinentalni purvenstva.",
                             IsDeleted = false,
                             Name = "Rumen Minchev"
@@ -368,7 +368,7 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("96840083-e467-4f29-b150-821701401f6e"),
+                            Id = new Guid("e84e35c8-7c34-4e8f-a170-79ad67797c98"),
                             Description = "The Gainward GeForce RTX 4090 Phantom 24GB is a powerhouse graphics card designed for ultimate gaming and content creation performance. Featuring NVIDIA's cutting-edge Ada Lovelace architecture, it delivers groundbreaking AI-powered graphics, real-time ray tracing, and exceptional efficiency.",
                             ImageUrl = "https://desktop.bg/system/images/491136/normal/gainward_geforce_rtx_4090_phantom_24gb.png",
                             IsDeleted = false,
@@ -377,7 +377,7 @@ namespace JudoApp.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e47e669e-7abf-4c1f-90bf-b992bf667f55"),
+                            Id = new Guid("187f3539-6921-4a94-91ca-8e8e0e0575c7"),
                             Description = "The Logitech G102 LIGHTSYNC White is a high-performance gaming mouse designed for precision, speed, and style. Featuring a 6,000 DPI sensor, it delivers accurate tracking and responsiveness, making it perfect for both casual and competitive gaming. The LIGHTSYNC RGB technology offers customizable lighting",
                             ImageUrl = "https://desktop.bg/system/images/249327/normal/910005824.jpg",
                             IsDeleted = false,

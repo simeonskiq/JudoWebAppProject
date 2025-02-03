@@ -2,6 +2,7 @@
 {
 
     using JudoApp.Services.Data.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class CartController : BaseController
@@ -20,6 +21,7 @@
             return View(cartItems);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddToCart(Guid productId)
         {
@@ -27,6 +29,7 @@
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult RemoveFromCart(Guid productId)
         {
@@ -34,13 +37,21 @@
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult UpdateQuantity(Guid productId, int quantity)
         {
             cartService.UpdateQuantity(productId, quantity);
-            return RedirectToAction("Index");
+
+            var cartItem = cartService.GetCartItems().FirstOrDefault(i => i.ProductId == productId);
+            decimal itemTotal = cartItem != null ? cartItem.Price * cartItem.Quantity : 0;
+
+            decimal cartTotal = cartService.GetTotal();
+
+            return Json(new { success = true, itemTotal = itemTotal, cartTotal = cartTotal });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ClearCart()
         {
