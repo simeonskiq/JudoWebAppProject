@@ -32,6 +32,8 @@
 
         public virtual DbSet<CartItem> CartItems { get; set; } = null!;
 
+        public virtual DbSet<Order> Orders { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

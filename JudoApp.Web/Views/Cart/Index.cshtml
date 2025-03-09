@@ -12,6 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -22,6 +23,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td><img src="@item.Product.ImageUrl" alt="Product Image" style="width: 100px; height: 100px;"></td>
                         <td>@item.ProductName</td>
                         <td>@item.Price.ToString("C")</td>
                         <td>
@@ -58,6 +60,14 @@
                     </td>
                 </tr>
             </tfoot>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-right">
+                        <a asp-controller="Order" asp-action="StartOrder" class="btn btn-success">Checkout</a>
+                    </td>
+                </tr>
+            </tfoot>
+
         </table>
     }
     else

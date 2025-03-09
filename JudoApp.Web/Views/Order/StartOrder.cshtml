@@ -1,0 +1,224 @@
+@model JudoApp.Web.ViewModels.Order.AddOrderFormModel
+
+@{
+    ViewData["Title"] = "Place Order";
+}
+
+<div class="container mt-5">
+    <!-- Progress Steps -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between position-relative align-items-center">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="mt-2">Personal Info</span>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <span class="mt-2">Address</span>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <span class="mt-2">Delivery</span>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <span class="mt-2">Payment</span>
+                </div>
+                <!-- Progress line -->
+                <div class="position-absolute" style="height: 2px; background-color: #dee2e6; width: 100%; top: 20px; z-index: -1;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step Forms -->
+    <div class="row">
+        <div class="col-12">
+            <!-- Step 1: Personal Information -->
+            <div id="step1" class="step-content">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Information</h5>
+                        <form id="personalInfoForm">
+                            <div class="mb-3">
+                                <label asp-for="FirstName" class="form-label"></label>
+                                <input asp-for="FirstName" class="form-control" required />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="LastName" class="form-label"></label>
+                                <input asp-for="LastName" class="form-control" required />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="PhoneNumber" class="form-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" required />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Delivery Address -->
+            <div id="step2" class="step-content" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Delivery Address</h5>
+                        <form id="addressForm">
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control" id="country" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postalCode" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="postalCode" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Delivery Method</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="deliveryMethod" id="courier" value="courier" checked>
+                                    <label class="form-check-label" for="courier">
+                                        Courier Delivery
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div id="step3" class="step-content" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment Method</h5>
+                        <form id="paymentForm">
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cash" checked>
+                                    <label class="form-check-label" for="cashOnDelivery">
+                                        Cash on Delivery
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card">
+                                    <label class="form-check-label" for="cardPayment">
+                                        Card Payment
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Complete Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="alert alert-success" style="display: none;">
+                Your order has been sent successfully!
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Personal info form submission
+            $('#personalInfoForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/Order/SavePersonalInfo',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        firstName: $('#FirstName').val(),
+                        lastName: $('#LastName').val(),
+                        phoneNumber: $('#PhoneNumber').val(),
+                        currentStep: 1
+                    }),
+                    success: function() {
+                        $('#step1').hide();
+                        $('#step2').show();
+                        updateProgress(2);
+                    },
+                    error: function(xhr) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            // Address form submission
+            $('#addressForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/Order/DeliveryAddress',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        country: $('#country').val(),
+                        city: $('#city').val(),
+                        phoneNumber: $('#phone').val(),
+                        postalCode: $('#postalCode').val(),
+                        deliveryMethod: $('input[name="deliveryMethod"]:checked').val(),
+                        currentStep: 2
+                    }),
+                    success: function() {
+                        $('#step2').hide();
+                        $('#step3').show();
+                        updateProgress(3);
+                    },
+                    error: function(xhr) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            // Payment form submission
+            $('#paymentForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/Order/Payment',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        paymentMethod: $('input[name="paymentMethod"]:checked').val(),
+                        currentStep: 3
+                    }),
+                    success: function(response) {
+                        $('#step3').hide();
+                        $('#successMessage').show();
+                        updateProgress(4);
+                    },
+                    error: function(xhr) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            function updateProgress(step) {
+                $('.rounded-circle').removeClass('bg-primary').addClass('bg-secondary');
+                $('.rounded-circle').eq(step - 1).removeClass('bg-secondary').addClass('bg-primary');
+            }
+        });
+    </script>
+}

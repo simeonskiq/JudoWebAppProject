@@ -1,10 +1,10 @@
 ﻿namespace JudoApp.Web.Controllers
 {
-
     using JudoApp.Services.Data.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class CartController : BaseController
     {
         private readonly ICartService cartService;
