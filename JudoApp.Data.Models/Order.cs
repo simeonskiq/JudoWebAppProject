@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 namespace JudoApp.Data.Models
 {
     public class Order
@@ -12,7 +14,11 @@ namespace JudoApp.Data.Models
 
         public string LastName { get; set; } = null!;
 
+        public string PhoneNumber { get; set; } = null!;
+
         public string Address { get; set; } = null!;
+
+        public string Email { get; set; } = null!;
 
         public string City { get; set; } = null!;
 
@@ -24,11 +30,13 @@ namespace JudoApp.Data.Models
 
         public string PaymentMethod { get; set; } = null!;
 
-        public decimal TotalAmount { get; set; }
+        public string TotalAmount { get; set; } = null!;
 
         public DateTime OrderDate { get; set; }
 
         public string OrderStatus { get; set; } = null!;
+
+        public string OrderNotes { get; set; } = null!;
 
         public ApplicationUser User { get; set; } = null!;
         

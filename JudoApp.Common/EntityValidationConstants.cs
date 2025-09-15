@@ -77,13 +77,20 @@
             public const int EmailMaxLenght = 85;
             public const int PasswordMinLenght = 6;
             public const int PasswordMaxLenght = 100;
-            public const int AddressMaxLength = 100;
+            public const int AddressMinLength = 10;
+            public const int AddressMaxLength = 50;
+            public const int CityMinLength = 3; 
             public const int CityMaxLength = 50;
+            public const int PostalCodeMinLength = 4;
             public const int PostalCodeMaxLength = 10;
+            public const int CountryMinLength = 3;
             public const int CountryMaxLength = 50;
             public const int ShippingMethodMaxLength = 50;
             public const int PaymentMethodMaxLength = 50;
             public const int StatusMaxLength = 20;
+            public const int OrderNumberMinLength = 5;
+            public const int OrderNumberMaxLength = 20;
+            public const int OrderNotesMaxLength = 250;
         }
     }
 }

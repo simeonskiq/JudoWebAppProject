@@ -49,8 +49,10 @@ namespace JudoApp.Data.Configuration
                 .HasMaxLength(PaymentMethodMaxLength);
 
             builder.Property(o => o.TotalAmount)
-                .IsRequired()
-                .HasColumnType("decimal(18,2)");
+                .IsRequired();
+
+            builder.Property(o => o.Email)
+                .IsRequired();
 
             builder.Property(o => o.OrderDate)
                 .IsRequired()
@@ -59,6 +61,13 @@ namespace JudoApp.Data.Configuration
             builder.Property(o => o.OrderStatus)
                 .IsRequired()
                 .HasMaxLength(StatusMaxLength);
+
+            builder.Property(o => o.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(PhoneMaxLenght);
+
+            builder.Property(o => o.OrderNotes)
+                .HasMaxLength(OrderNotesMaxLength);
 
             builder.HasOne(o => o.User)
                 .WithMany()
