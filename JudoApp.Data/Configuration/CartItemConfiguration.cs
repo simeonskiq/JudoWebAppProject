@@ -27,7 +27,7 @@ namespace JudoApp.Data.Configuration
             builder.HasOne(c => c.Product)
                 .WithMany()
                 .HasForeignKey(c => c.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasIndex(c => c.ProductId);
 

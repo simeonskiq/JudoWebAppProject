@@ -1,100 +1,72 @@
 namespace JudoApp.Web.Controllers
 {
 
-    using Microsoft.AspNetCore.Mvc;
-    using JudoApp.Web.ViewModels.Order;
-    using Microsoft.AspNetCore.Identity;
-    using JudoApp.Data.Models;
     using JudoApp.Services.Data.Interfaces;
-    using JudoApp.Web.ViewModels.Club;
+    using JudoApp.Web.ViewModels.Order;
     using Microsoft.AspNetCore.Authorization;
-    using JudoApp.Web.ViewModels.Judge;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
 
     public class OrderController : BaseController
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IOrderService orderService;
+        private readonly ICartService cartService;
 
-        public OrderController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,IManagerService managerService,IOrderService orderService)
+        public OrderController(IOrderService orderService, IManagerService managerService, ICartService cartService)
             : base(managerService)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
             this.orderService = orderService;
+            this.cartService = cartService;
         }
 
-        public IActionResult StartOrder()
+        [HttpGet]
+
+        public async Task<IActionResult> Index()
         {
-            var model = new AddOrderFormModel
+            IEnumerable<OrderIndexViewModel> orders;
+
+            bool isManager = await this.IsUserManagerAsync(); 
+
+            if (isManager)
             {
-                CurrentStep = 1,
-                IsAuthenticated = User.Identity?.IsAuthenticated ?? false
-            };
-            return View(model);
+                // Managers see all orders
+                orders = await this.orderService.IndexGetAllOrderedByNumberAsync();
+            }
+            else
+            {
+                // Normal users see only their own orders
+                var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                orders = await this.orderService.GetOrdersByUserIdAsync(userId);
+            }
+
+            return this.View(orders);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GuestRegistration([FromBody] GuestRegistrationViewModel model)
+        [HttpGet]
+        [Authorize]
+
+        public async Task<IActionResult> Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            ApplicationUser user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email,
-            };
-
-            var result = await userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {
-                await signInManager.SignInAsync(user, isPersistent: false);
-                return Json(new { success = true });
-            }
-
-            return BadRequest(result.Errors);
-        }
-
-        [HttpPost]
-        public IActionResult DeliveryAddress([FromBody] DeliveryAddressViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Save delivery address to session or database
-            return Json(new { success = true });
+            var cartItems = this.cartService.GetCartItems();
+            ViewData["CartItems"] = cartItems;
+            return this.View();
         }
 
         [HttpPost]
-        public IActionResult Payment([FromBody] PaymentViewModel model)
+        [Authorize]
+        public async Task<IActionResult> Create(AddOrderFormModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            // Process payment and create order
-            return Json(new { success = true, message = "Your order has been sent successfully" });
-        }
+            var cartItems = this.cartService.GetCartItems();
 
-        [HttpPost]
-        public IActionResult SavePersonalInfo([FromBody] PersonalInfoViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            await this.orderService.AddOrderAsync(model, userId, cartItems);
 
-            HttpContext.Session.SetString("FirstName", model.FirstName);
-            HttpContext.Session.SetString("LastName", model.LastName);
-            HttpContext.Session.SetString("PhoneNumber", model.PhoneNumber);
+            // clear the cart after placing the order
+            this.cartService.ClearCart();
 
-            return Json(new { success = true });
+            TempData["SuccessMessage"] = "Your order was placed successfully!";
+            return this.RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

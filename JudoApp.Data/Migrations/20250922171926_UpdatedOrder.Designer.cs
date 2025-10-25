@@ -4,6 +4,7 @@ using JudoApp.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JudoApp.Data.Migrations
 {
     [DbContext(typeof(JudoDbContext))]
-    partial class JudoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250922171926_UpdatedOrder")]
+    partial class UpdatedOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,16 +128,16 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e2848517-0242-4a58-abd9-4d4482c33bbd"),
-                            DateUploaded = new DateTime(2025, 9, 22, 22, 11, 21, 849, DateTimeKind.Utc).AddTicks(3774),
+                            Id = new Guid("8849c180-d93b-4095-9410-e1cbc62ec5db"),
+                            DateUploaded = new DateTime(2025, 9, 22, 17, 19, 26, 61, DateTimeKind.Utc).AddTicks(8271),
                             Description = "Artificial intelligence is no longer a concept confined to science fiction. From personal assistants like Siri and Alexa to advanced data analytics in healthcare, AI is revolutionizing industries and enhancing daily life. This article explores the current applications of AI, its impact on various sectors, and what the future may hold for this transformative technology.",
                             IsDeleted = false,
                             Tittle = "The Rise of AI in Everyday Life: Transforming How We Live and Work"
                         },
                         new
                         {
-                            Id = new Guid("05a793ee-af08-4b2d-8a2f-b0fd1e5306ac"),
-                            DateUploaded = new DateTime(2025, 9, 22, 22, 11, 21, 849, DateTimeKind.Utc).AddTicks(3779),
+                            Id = new Guid("2026162e-f493-43c6-a1f1-c6e57eb9a3d1"),
+                            DateUploaded = new DateTime(2025, 9, 22, 17, 19, 26, 61, DateTimeKind.Utc).AddTicks(8277),
                             Description = "As environmental concerns grow, many are looking for ways to reduce their carbon footprint and live more sustainably. This article provides practical tips for adopting eco-friendly habits, from reducing plastic use to embracing renewable energy. Discover how small changes in daily routines can contribute to a healthier planet and promote long-term sustainability.",
                             IsDeleted = false,
                             Tittle = "Sustainable Living: Simple Changes for a Greener Future"
@@ -147,8 +150,8 @@ namespace JudoApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -167,6 +170,8 @@ namespace JudoApp.Data.Migrations
                         .HasDefaultValue(1);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -220,7 +225,7 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("76e9ef3d-b8a6-4561-a9fa-ae68836a0457"),
+                            Id = new Guid("e9a55ebc-2cdc-490e-ae74-8647e131376b"),
                             Address = "Zala. „Dunav“, ul. „Chiprovci“ 40",
                             City = "Ruse",
                             IsDeleted = false,
@@ -229,7 +234,7 @@ namespace JudoApp.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("efdffcb0-c789-4864-997c-fbee67ea4298"),
+                            Id = new Guid("d50919f4-09ed-435b-9e02-ce4a6e9cac85"),
                             Address = "bul. „Prof. Cvetan Lazarov“ №14",
                             City = "Sofia",
                             IsDeleted = false,
@@ -269,14 +274,14 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("218cdeda-1c2d-4f53-97d7-7f9f4413f04f"),
+                            Id = new Guid("f9ed148f-ca78-401b-badd-80f9ec5870bd"),
                             Description = "Pritejava licenz 'A' koito mu dava pravo da sudiistva na svetovni purvenstva",
                             IsDeleted = false,
                             Name = "Plamen Velikov"
                         },
                         new
                         {
-                            Id = new Guid("967620c3-beef-4baf-b981-e9bfe3ae9a7e"),
+                            Id = new Guid("542e1829-4ce2-4d07-918b-b2fd3647e2a7"),
                             Description = "Pritejava licenz 'B' s pravo da sudiistva na kontinentalni purvenstva.",
                             IsDeleted = false,
                             Name = "Rumen Minchev"
@@ -416,8 +421,9 @@ namespace JudoApp.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("TotalAmount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -430,51 +436,6 @@ namespace JudoApp.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("JudoApp.Data.Models.OrderItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CartItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(2083)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(2083)");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartItemId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("JudoApp.Data.Models.Product", b =>
@@ -515,7 +476,7 @@ namespace JudoApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("716848a4-412b-455f-98ac-649f136909a6"),
+                            Id = new Guid("b8036b74-9b8d-40be-ae9d-300ca05337cd"),
                             Description = "The Gainward GeForce RTX 4090 Phantom 24GB is a powerhouse graphics card designed for ultimate gaming and content creation performance. Featuring NVIDIA's cutting-edge Ada Lovelace architecture, it delivers groundbreaking AI-powered graphics, real-time ray tracing, and exceptional efficiency.",
                             ImageUrl = "https://desktop.bg/system/images/491136/normal/gainward_geforce_rtx_4090_phantom_24gb.png",
                             IsDeleted = false,
@@ -524,7 +485,7 @@ namespace JudoApp.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7a1fcd25-2639-468f-a987-895572f207dd"),
+                            Id = new Guid("624ca06b-60b7-426a-bce0-526cc1815b00"),
                             Description = "The Logitech G102 LIGHTSYNC White is a high-performance gaming mouse designed for precision, speed, and style. Featuring a 6,000 DPI sensor, it delivers accurate tracking and responsiveness, making it perfect for both casual and competitive gaming. The LIGHTSYNC RGB technology offers customizable lighting",
                             ImageUrl = "https://desktop.bg/system/images/249327/normal/910005824.jpg",
                             IsDeleted = false,
@@ -666,6 +627,10 @@ namespace JudoApp.Data.Migrations
 
             modelBuilder.Entity("JudoApp.Data.Models.CartItem", b =>
                 {
+                    b.HasOne("JudoApp.Data.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
+
                     b.HasOne("JudoApp.Data.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
@@ -695,30 +660,6 @@ namespace JudoApp.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("JudoApp.Data.Models.OrderItem", b =>
-                {
-                    b.HasOne("JudoApp.Data.Models.CartItem", "CartItem")
-                        .WithMany()
-                        .HasForeignKey("CartItemId");
-
-                    b.HasOne("JudoApp.Data.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JudoApp.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("CartItem");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

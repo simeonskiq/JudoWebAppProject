@@ -15,24 +15,24 @@
         public string Name { get; set; } = null!;
 
         [Required]
-        [MinLength(AddressMinLenght)]
-        [MaxLength(AddressMaxLenght)]
+        [MinLength(AddressMinLength)]
+        [MaxLength(AddressMaxLength)]
 
         public string Address { get; set; } = null!;
 
         [Required]
-        [MinLength(CityMinLenght)]
-        [MaxLength(CityMaxLenght)]
+        [MinLength(CityMinLength)]
+        [MaxLength(CityMaxLength)]
 
         public string City { get; set; } = null!;
 
-        [MinLength(PhoneMinLenght)]
-        [MaxLength(PhoneMaxLenght)]
+        [MinLength(PhoneMinLength)]
+        [MaxLength(PhoneMaxLength)]
 
         public string? PhoneNumber { get; set; }
 
-        [MinLength(EmailMinLenght)]
-        [MaxLength(EmailMaxLenght)]
+        [MinLength(EmailMinLength)]
+        [MaxLength(EmailMaxLength)]
         public string? Email { get; set; }
 
         [MaxLength(ImageUrlMaxLength)]

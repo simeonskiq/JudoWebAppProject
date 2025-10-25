@@ -5,6 +5,8 @@
     using JudoApp.Services.Data.Interfaces;
     using JudoApp.Web.Data;
     using Microsoft.EntityFrameworkCore;
+    using System.Diagnostics;
+    using System.Globalization;
 
     public class CartService : ICartService
     {
@@ -30,6 +32,12 @@
             var existingItem = context.CartItems
                 .FirstOrDefault(i => i.ProductId == productId);
 
+            decimal price = 0m;
+            if (!string.IsNullOrWhiteSpace(product.Price))
+            {
+                decimal.TryParse(product.Price, NumberStyles.Any, CultureInfo.InvariantCulture, out price);
+            }
+
             if (existingItem != null)
             {
                 existingItem.Quantity++;
@@ -40,8 +48,9 @@
                 {
                     ProductId = product.Id,
                     ProductName = product.Name,
-                    Price = decimal.Parse(product.Price),
-                    Quantity = 1
+                    Price = price,
+                    Quantity = 1,
+                    ImageUrl = product.ImageUrl
                 });
             }
 

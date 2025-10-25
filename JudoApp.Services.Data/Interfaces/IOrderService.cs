@@ -1,12 +1,15 @@
 ﻿namespace JudoApp.Services.Data.Interfaces
 {
+    using JudoApp.Data.Models;
     using JudoApp.Web.ViewModels.Order;
 
     public interface IOrderService
     {
         Task<IEnumerable<OrderIndexViewModel>> IndexGetAllOrderedByNumberAsync();
 
-        Task AddOrderAsync(AddOrderFormModel model);
+        Task<IEnumerable<OrderIndexViewModel>> GetOrdersByUserIdAsync(Guid userId);
+
+        Task AddOrderAsync(AddOrderFormModel model, Guid userId, List<CartItem> cartItems);
 
         Task<EditOrderFormModel?> GetOrderForEditByIdAsync(Guid id);
 

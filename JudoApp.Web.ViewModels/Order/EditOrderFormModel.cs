@@ -24,14 +24,14 @@
 
         [Required]
         [Phone]
-        [MinLength(PhoneMinLenght)]
-        [MaxLength(PhoneMaxLenght)]
+        [MinLength(PhoneMinLength)]
+        [MaxLength(PhoneMaxLength)]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
         [EmailAddress]
-        [MinLength(EmailMinLenght)]
-        [MaxLength(EmailMaxLenght)]
+        [MinLength(EmailMinLength)]
+        [MaxLength(EmailMaxLength)]
         public string Email { get; set; } = null!;
 
         [Required]

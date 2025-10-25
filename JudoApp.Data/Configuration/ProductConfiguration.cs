@@ -19,12 +19,12 @@
             builder
                 .Property(p => p.Description)
                 .IsRequired()
-                .HasMaxLength(DescriptionMaxLenght);
+                .HasMaxLength(DescriptionMaxLength);
 
             builder
                 .Property(p => p.Price)
                 .IsRequired()
-                .HasMaxLength(PriceMaxLenght);
+                .HasMaxLength(PriceMaxLength);
 
             builder
                 .Property(p => p.ImageUrl)

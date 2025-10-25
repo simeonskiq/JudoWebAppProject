@@ -8,14 +8,14 @@
             public const int IdMaxLength = 36;
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
-            public const int AddressMinLenght = 20;
-            public const int AddressMaxLenght = 100;
-            public const int PhoneMinLenght = 4;
-            public const int PhoneMaxLenght = 20;
-            public const int CityMinLenght = 3;
-            public const int CityMaxLenght = 15;
-            public const int EmailMinLenght = 25;
-            public const int EmailMaxLenght = 85;
+            public const int AddressMinLength = 20;
+            public const int AddressMaxLength = 100;
+            public const int PhoneMinLength = 4;
+            public const int PhoneMaxLength = 20;
+            public const int CityMinLength = 3;
+            public const int CityMaxLength = 15;
+            public const int EmailMinLength = 25;
+            public const int EmailMaxLength = 85;
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
             public const string CityFilterRegex = "^[A-Za-z]+(?:\\s+[A-Za-z]+)*$";
@@ -25,18 +25,18 @@
         {
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
-            public const int DescriptionMinLenght = 50;
-            public const int DescriptionMaxLenght = 500;
+            public const int DescriptionMinLength = 50;
+            public const int DescriptionMaxLength = 500;
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
         }
 
         public static class Article
         {
-            public const int TittleMinLenght = 20;
-            public const int TittleMaxLenght = 100;
-            public const int DescriptionMinLenght = 100;
-            public const int DescriptionMaxLenght = 3000;
+            public const int TittleMinLength = 20;
+            public const int TittleMaxLength = 100;
+            public const int DescriptionMinLength = 100;
+            public const int DescriptionMaxLength = 3000;
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
         }
@@ -45,8 +45,8 @@
         {
             public const int PhoneNumberMinLength = 4;
             public const int PhoneNumberMaxLength = 15;
-            public const int ReasonMinLenght = 25;
-            public const int ReasonMaxLenght = 100;
+            public const int ReasonMinLength = 25;
+            public const int ReasonMaxLength = 100;
         }
 
         public static class ManagerRequest
@@ -59,10 +59,10 @@
         {
             public const int NameMinLength = 10;
             public const int NameMaxLength = 50;
-            public const int PriceMinLenght = 1;
-            public const int PriceMaxLenght = 10;
-            public const int DescriptionMinLenght = 100;
-            public const int DescriptionMaxLenght = 600;
+            public const int PriceMinLength = 1;
+            public const int PriceMaxLength = 10;
+            public const int DescriptionMinLength = 100;
+            public const int DescriptionMaxLength = 600;
             public const int ImageUrlMinLength = 8;
             public const int ImageUrlMaxLength = 2083;
         }
@@ -71,12 +71,12 @@
         {
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
-            public const int PhoneMinLenght = 4;
-            public const int PhoneMaxLenght = 20;
-            public const int EmailMinLenght = 25;
-            public const int EmailMaxLenght = 85;
-            public const int PasswordMinLenght = 6;
-            public const int PasswordMaxLenght = 100;
+            public const int PhoneMinLength = 4;
+            public const int PhoneMaxLength = 20;
+            public const int EmailMinLength = 25;
+            public const int EmailMaxLength = 85;
+            public const int PasswordMinLength = 6;
+            public const int PasswordMaxLength = 100;
             public const int AddressMinLength = 10;
             public const int AddressMaxLength = 50;
             public const int CityMinLength = 3; 

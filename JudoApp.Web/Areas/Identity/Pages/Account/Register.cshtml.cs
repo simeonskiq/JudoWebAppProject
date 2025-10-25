@@ -97,6 +97,22 @@ namespace JudoApp.Web.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
+                // Check if the email is already used
+                var existingUser = await _userManager.FindByEmailAsync(Input.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The email you are trying to use is already registered.");
+                    return Page();
+                }
+
+                // Optionally, also check if the username is taken
+                var existingUsername = await _userManager.FindByNameAsync(Input.Username);
+                if (existingUsername != null)
+                {
+                    ModelState.AddModelError(string.Empty, "The username you are trying to use is already taken.");
+                    return Page();
+                }
+
                 var user = CreateUser();
                 user.Email = Input.Email;
 
@@ -106,8 +122,6 @@ namespace JudoApp.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
-                    var userId = await _userManager.GetUserIdAsync(user);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);

@@ -13,76 +13,94 @@ namespace JudoApp.Data.Configuration
         {
             builder.HasKey(o => o.Id);
 
-            builder.Property(o => o.OrderNumber)
+            builder
+                .Property(o => o.OrderNumber)
+                .HasDefaultValueSql("1")
                 .IsRequired();
 
-            builder.Property(o => o.FirstName)
+            builder
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .Property(o => o.FirstName)
                 .IsRequired()
                 .HasMaxLength(NameMaxLength);
 
-            builder.Property(o => o.LastName)
+            builder
+                .Property(o => o.LastName)
                 .IsRequired()
                 .HasMaxLength(NameMaxLength);
 
-            builder.Property(o => o.Address)
+            builder
+                .Property(o => o.Email)
+                .IsRequired()
+                .HasMaxLength(EmailMaxLength);
+
+            builder
+                .Property(o => o.Address)
                 .IsRequired()
                 .HasMaxLength(AddressMaxLength);
 
-            builder.Property(o => o.City)
+            builder
+                .Property(o => o.City)
                 .IsRequired()
                 .HasMaxLength(CityMaxLength);
 
-            builder.Property(o => o.PostalCode)
+            builder
+                .Property(o => o.PostalCode)
                 .IsRequired()
                 .HasMaxLength(PostalCodeMaxLength);
 
-            builder.Property(o => o.Country)
+            builder
+                .Property(o => o.Country)
                 .IsRequired()
                 .HasMaxLength(CountryMaxLength);
 
-            builder.Property(o => o.ShippingMethod)
+            builder
+                .Property(o => o.ShippingMethod)
                 .IsRequired()
                 .HasMaxLength(ShippingMethodMaxLength);
 
-            builder.Property(o => o.PaymentMethod)
+            builder
+                .Property(o => o.PaymentMethod)
                 .IsRequired()
                 .HasMaxLength(PaymentMethodMaxLength);
 
-            builder.Property(o => o.TotalAmount)
+            builder
+                .Property(o => o.TotalAmount)
                 .IsRequired();
 
-            builder.Property(o => o.Email)
-                .IsRequired();
-
-            builder.Property(o => o.OrderDate)
+            builder
+                .Property(o => o.OrderDate)
                 .IsRequired()
                 .HasDefaultValueSql("GETDATE()");
 
-            builder.Property(o => o.OrderStatus)
+            builder
+                .Property(o => o.OrderStatus)
                 .IsRequired()
-                .HasMaxLength(StatusMaxLength);
+                .HasMaxLength(StatusMaxLength)
+                .HasDefaultValue("Preparing");
 
-            builder.Property(o => o.PhoneNumber)
+            builder
+                .Property(o => o.PhoneNumber)
                 .IsRequired()
-                .HasMaxLength(PhoneMaxLenght);
+                .HasMaxLength(PhoneMaxLength);
 
-            builder.Property(o => o.OrderNotes)
+            builder
+                .Property(o => o.OrderNotes)
                 .HasMaxLength(OrderNotesMaxLength);
 
-            builder.HasOne(o => o.User)
-                .WithMany()
-                .HasForeignKey(o => o.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasIndex(o => o.OrderNumber)
+            builder
+                .HasIndex(o => o.OrderNumber)
                 .IsUnique();
 
             builder
                 .Property(c => c.IsDeleted)
                 .IsRequired()
                 .HasDefaultValue(false);
-   
-            builder.HasIndex(o => o.UserId);
         }
     }
 }

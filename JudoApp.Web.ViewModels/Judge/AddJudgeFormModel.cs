@@ -13,8 +13,8 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        [MinLength(DescriptionMinLenght)]
-        [MaxLength(DescriptionMaxLenght)]
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
         public string? Description { get; set; }
 
         [MinLength(ImageUrlMinLength)]

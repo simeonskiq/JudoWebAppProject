@@ -28,7 +28,7 @@
 
         public string PaymentMethod { get; set; } = null!;
 
-        public decimal TotalAmount { get; set; }
+        public string TotalAmount { get; set; } = null!;
 
         public DateTime OrderDate { get; set; }
 

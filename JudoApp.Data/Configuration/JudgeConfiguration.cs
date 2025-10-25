@@ -22,7 +22,7 @@
             builder
                 .Property(j => j.Description)
                 .IsRequired(false)
-                .HasMaxLength(DescriptionMaxLenght);
+                .HasMaxLength(DescriptionMaxLength);
 
             builder
                 .Property(j => j.ImageUrl)

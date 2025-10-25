@@ -8,6 +8,9 @@
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid();
+
         }
+
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

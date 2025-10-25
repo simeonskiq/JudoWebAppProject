@@ -1,62 +1,111 @@
-﻿<div class="flex-shrink-0 p-3 bg-white" style="width: 280px; position: fixed; top: 100px; left: 0; bottom: 4em; z-index: 1050;">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-5 fw-semibold">Admin Panel</span>
+﻿<div class="sidebar bg-light shadow-lg rounded-3 p-3"
+     style="width: 280px; position: fixed; top: 100px; left: 20px; bottom: 2em; z-index: 1050; overflow-y: auto;">
+    <a href="/" class="d-flex align-items-center mb-4 text-dark text-decoration-none">
+        <svg class="bi me-2" width="32" height="28" fill="currentColor">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-4 fw-bold">Admin Panel</span>
     </a>
-    <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                Manage Clubs
+    <ul class="list-unstyled">
+        <!-- Manage Clubs -->
+        <li class="mb-2">
+            <button class="btn w-100 text-start d-flex align-items-center btn-toggle collapsed fw-semibold"
+                    data-bs-toggle="collapse" data-bs-target="#clubs-collapse" aria-expanded="true">
+                <i class="bi bi-people me-2"></i> Manage Clubs
             </button>
-            <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Manage">Manage Clubs</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Create">Create Club</a></li>
+            <div class="collapse show" id="clubs-collapse">
+                <ul class="list-unstyled ps-4 small mt-2">
+                    <li><a class="nav-link py-1" asp-controller="Club" asp-action="Manage">⚙️ Manage Clubs</a></li>
+                    <li><a class="nav-link py-1" asp-controller="Club" asp-action="Create">➕ Create Club</a></li>
                 </ul>
             </div>
         </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                Manage Judges
+
+        <!-- Manage Judges -->
+        <li class="mb-2">
+            <button class="btn w-100 text-start d-flex align-items-center btn-toggle collapsed fw-semibold"
+                    data-bs-toggle="collapse" data-bs-target="#judges-collapse">
+                <i class="bi bi-person-badge me-2"></i> Manage Judges
             </button>
-            <div class="collapse" id="dashboard-collapse" style="">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Manage">Manage Judges</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Judge" asp-action="Create">Create Judge</a></li>
+            <div class="collapse" id="judges-collapse">
+                <ul class="list-unstyled ps-4 small mt-2">
+                    <li><a class="nav-link py-1" asp-controller="Judge" asp-action="Manage">⚖️ Manage Judges</a></li>
+                    <li><a class="nav-link py-1" asp-controller="Judge" asp-action="Create">➕ Create Judge</a></li>
                 </ul>
             </div>
         </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                Manage Articles
+
+        <!-- Manage Articles -->
+        <li class="mb-2">
+            <button class="btn w-100 text-start d-flex align-items-center btn-toggle collapsed fw-semibold"
+                    data-bs-toggle="collapse" data-bs-target="#articles-collapse">
+                <i class="bi bi-journal-text me-2"></i> Manage Articles
             </button>
-            <div class="collapse" id="orders-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Manage">Manage Articles</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Article" asp-action="Create">Create Articles</a></li>
+            <div class="collapse" id="articles-collapse">
+                <ul class="list-unstyled ps-4 small mt-2">
+                    <li><a class="nav-link py-1" asp-controller="Article" asp-action="Manage">📝 Manage Articles</a></li>
+                    <li><a class="nav-link py-1" asp-controller="Article" asp-action="Create">➕ Create Article</a></li>
                 </ul>
             </div>
         </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#roles-collapse" aria-expanded="false">
-                Manage User Roles
+
+        <!-- Manage Products -->
+        <li class="mb-2">
+            <button class="btn w-100 text-start d-flex align-items-center btn-toggle collapsed fw-semibold"
+                    data-bs-toggle="collapse" data-bs-target="#products-collapse">
+                <i class="bi bi-box-seam me-2"></i> Manage Products
+            </button>
+            <div class="collapse" id="products-collapse">
+                <ul class="list-unstyled ps-4 small mt-2">
+                    <li><a class="nav-link py-1" asp-controller="Product" asp-action="Manage">📦 Manage Products</a></li>
+                    <li><a class="nav-link py-1" asp-controller="Product" asp-action="Create">➕ Create Product</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Manage Roles -->
+        <li class="mb-2">
+            <button class="btn w-100 text-start d-flex align-items-center btn-toggle collapsed fw-semibold"
+                    data-bs-toggle="collapse" data-bs-target="#roles-collapse">
+                <i class="bi bi-person-gear me-2"></i> Manage User Roles
             </button>
             <div class="collapse" id="roles-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="UserManagement" asp-action="Index">Manage Roles</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                Manage Products
-            </button>
-            <div class="collapse" id="orders-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Manage">Manage Products</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Create">Create Products</a></li>
+                <ul class="list-unstyled ps-4 small mt-2">
+                    <li><a class="nav-link py-1" asp-area="Admin" asp-controller="UserManagement" asp-action="Index">👥 Manage Roles</a></li>
                 </ul>
             </div>
         </li>
     </ul>
 </div>
+
+<!-- Add this CSS -->
+<style>
+    .sidebar {
+        background: #ffffff;
+        border-radius: 12px;
+    }
+
+    .btn-toggle {
+        background: #f8f9fa;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+    }
+
+        .btn-toggle:hover {
+            background: #e9ecef;
+        }
+
+    .nav-link {
+        color: #333;
+        border-radius: 6px;
+        display: block;
+        padding-left: 0.5rem;
+    }
+
+        .nav-link:hover {
+            background: #f1f3f5;
+            color: #000;
+        }
+</style>

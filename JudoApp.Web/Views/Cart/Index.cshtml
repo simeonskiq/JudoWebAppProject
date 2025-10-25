@@ -1,7 +1,6 @@
 ﻿@using JudoApp.Data.Models
 @model List<CartItem>
 
-@* Include anti-forgery token *@
 @Html.AntiForgeryToken()
 
 <div class="container">
@@ -23,18 +22,20 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td><img src="@item.Product.ImageUrl" alt="Product Image" style="width: 100px; height: 100px;"></td>
-                        <td>@item.ProductName</td>
-                        <td>@item.Price.ToString("C")</td>
                         <td>
-                            <!-- Minus button -->
+                            <img src="@(item.Product?.ImageUrl ?? item.ImageUrl ?? "/images/no-image.png")"
+                                 alt="Product Image" style="width: 100px; height: 100px; object-fit:cover;" />
+                        </td>
+                        <td>@(item.Product?.Name ?? item.ProductName)</td>
+                        <td>@(item.Price.ToString("C"))</td>
+                        <td>
                             <button type="button" class="btn btn-sm btn-secondary change-quantity"
                                     data-productid="@item.ProductId" data-change="-1">
                                 -
                             </button>
-                            <!-- Quantity display -->
+
                             <span id="quantity-@item.ProductId" class="mx-2">@item.Quantity</span>
-                            <!-- Plus button -->
+
                             <button type="button" class="btn btn-sm btn-secondary change-quantity"
                                     data-productid="@item.ProductId" data-change="1">
                                 +
@@ -47,27 +48,34 @@
                             </form>
                         </td>
                     </tr>
+
+                    <!-- Optional: item total row or hidden field for JS update -->
+                    <tr style="display:none;">
+                        <td colspan="5">
+                            <span id="item-total-@item.ProductId">@((item.Price * item.Quantity).ToString("C"))</span>
+                        </td>
+                    </tr>
                 }
             </tbody>
+
             <tfoot>
                 <tr>
                     <td colspan="3" class="text-right"><strong>Total:</strong></td>
-                    <td id="cart-total"><strong>@Model.Sum(i => i.Total).ToString("C")</strong></td>
+                    <td id="cart-total"><strong>@Model.Sum(i => i.Price * i.Quantity).ToString("C")</strong></td>
                     <td>
                         <form asp-action="ClearCart" method="post" class="d-inline">
                             <button type="submit" class="btn btn-warning">Clear Cart</button>
                         </form>
                     </td>
                 </tr>
-            </tfoot>
-            <tfoot>
+
                 <tr>
                     <td colspan="5" class="text-right">
-                        <a asp-controller="Order" asp-action="StartOrder" class="btn btn-success">Checkout</a>
+                        <!-- Checkout should be a link (GET) or a small form (POST). Using GET to Order/Create -->
+                        <a asp-controller="Order" asp-action="Create" class="btn btn-success">Checkout</a>
                     </td>
                 </tr>
             </tfoot>
-
         </table>
     }
     else

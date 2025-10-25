@@ -23,22 +23,22 @@
             builder
                 .Property(c => c.Address)
                 .IsRequired()
-                .HasMaxLength(AddressMaxLenght);
+                .HasMaxLength(AddressMaxLength);
 
             builder
                 .Property(c => c.City)
                 .IsRequired()
-                .HasMaxLength(CityMaxLenght);
+                .HasMaxLength(CityMaxLength);
 
             builder
                 .Property(c => c.PhoneNumber)
                 .IsRequired(false)
-                .HasMaxLength(PhoneMaxLenght);
+                .HasMaxLength(PhoneMaxLength);
 
             builder
                 .Property(c => c.Email)
                 .IsRequired(false)
-                .HasMaxLength(EmailMaxLenght);
+                .HasMaxLength(EmailMaxLength);
 
             builder
                 .Property(c => c.ImageUrl)

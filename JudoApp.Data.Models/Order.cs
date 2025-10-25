@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JudoApp.Data.Models
 {
@@ -6,9 +6,12 @@ namespace JudoApp.Data.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        public string OrderNumber { get; set; } = null!;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int OrderNumber { get; set; }
 
         public Guid UserId { get; set; }
+
+        public ApplicationUser User { get; set; } = null!;
 
         public string FirstName { get; set; } = null!;
 
@@ -30,7 +33,7 @@ namespace JudoApp.Data.Models
 
         public string PaymentMethod { get; set; } = null!;
 
-        public string TotalAmount { get; set; } = null!;
+        public decimal TotalAmount { get; set; }
 
         public DateTime OrderDate { get; set; }
 
@@ -38,9 +41,7 @@ namespace JudoApp.Data.Models
 
         public string OrderNotes { get; set; } = null!;
 
-        public ApplicationUser User { get; set; } = null!;
-        
-        public ICollection<CartItem> OrderItems { get; set; } = new List<CartItem>();
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         public bool IsDeleted { get; set; }
     }

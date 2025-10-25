@@ -29,12 +29,50 @@
             return orders;
         }
 
-        public async Task AddOrderAsync(AddOrderFormModel model)
+        public async Task<IEnumerable<OrderIndexViewModel>> GetOrdersByUserIdAsync(Guid userId)
         {
-            Order orders = new Order();
-            AutoMapperConfig.MapperInstance.Map(model, orders);
+            var orders = await this.orderRepository
+                .GetAllAttached()
+                .Where(o => !o.IsDeleted && o.UserId == userId)
+                .OrderByDescending(o => o.OrderDate)
+                .To<OrderIndexViewModel>()
+                .ToListAsync();
 
-            await this.orderRepository.AddAsync(orders);
+            return orders;
+        }
+
+        public async Task AddOrderAsync(AddOrderFormModel model, Guid userId, List<CartItem> cartItems)
+        {
+            Order order = new Order();
+            AutoMapperConfig.MapperInstance.Map(model, order);
+
+            order.UserId = userId;
+            order.OrderDate = DateTime.UtcNow;
+
+            order.OrderItems = new List<OrderItem>();
+
+            foreach (var c in cartItems)
+            {
+                var price = c.Price;
+                var quantity = c.Quantity;
+                var total = price * quantity;
+
+                var orderItem = new OrderItem
+                {
+                    ProductId = c.ProductId,
+                    ProductName = c.ProductName ?? c.Product?.Name ?? string.Empty,
+                    Price = price,
+                    Quantity = quantity,
+                    Total = total,
+                    ImageUrl = c.ImageUrl ?? c.Product?.ImageUrl
+                };
+
+                order.OrderItems.Add(orderItem);
+            }
+
+            order.TotalAmount = order.OrderItems.Sum(i => i.Total);
+
+            await this.orderRepository.AddAsync(order);
         }
 
         public async Task<EditOrderFormModel?> GetOrderForEditByIdAsync(Guid id)

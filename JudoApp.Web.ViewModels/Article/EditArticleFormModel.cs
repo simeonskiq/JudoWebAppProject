@@ -13,13 +13,13 @@
         public string Id { get; set; } = null!;
 
         [Required]
-        [MinLength(TittleMinLenght)]
-        [MaxLength(TittleMaxLenght)]
+        [MinLength(TittleMinLength)]
+        [MaxLength(TittleMaxLength)]
         public string Tittle { get; set; } = null!;
 
         [Required]
-        [MinLength(DescriptionMinLenght)]
-        [MaxLength(DescriptionMaxLenght)]
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         [MaxLength(ImageUrlMaxLength)]

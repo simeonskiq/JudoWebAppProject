@@ -1,0 +1,85 @@
+﻿@model IEnumerable<JudoApp.Web.ViewModels.Order.OrderIndexViewModel>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">My Orders</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            You have no orders yet.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order #</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Delivery</th>
+                    <th>Payment</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderNumber</td>
+                        <td>@order.OrderDate.ToString("dd MMM yyyy HH:mm")</td>
+                        <td>
+                            <span class="badge bg-@(order.OrderStatus == "Completed" ? "success" :
+                                                                                    order.OrderStatus == "Pending" ? "warning text-dark" :
+                                                                                    "secondary")">
+                        @order.OrderStatus
+                    </span>
+                </td>
+                <td>@order.TotalAmount</td>
+                <td>@order.DeliveryMethod</td>
+                <td>@order.PaymentMethod</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#order-@order.Id"
+                            aria-expanded="false" aria-controls="order-@order.Id">
+                        View Items
+                    </button>
+                </td>
+            </tr>
+            <tr class="collapse" id="order-@order.Id">
+                <td colspan="7">
+                    <div class="card card-body">
+                        <h5>Order Items</h5>
+                        @if (order.OrderItems.Any())
+                                {
+                                    <ul class="list-group">
+                                        @foreach (var item in order.OrderItems)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                @(item.ProductName ?? item.Product?.Name ?? "Unknown product")
+                                                <span>x @item.Quantity</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p>No items found in this order.</p>
+                                }
+
+                                <hr />
+                                <p><strong>Shipping Address:</strong> @order.Address, @order.City, @order.PostalCode, @order.Country</p>
+                                <p><strong>Contact:</strong> @order.FirstName @order.LastName - @order.PhoneNumber | @order.Email</p>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
